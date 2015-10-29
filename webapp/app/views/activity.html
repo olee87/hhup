@@ -1,0 +1,49 @@
+<div>
+  <div class="top-bar row">
+    <a class="btn btn-default col-xs-2" href="/#/activities">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="caption">back to program</span>
+    </a>
+    <div class="title col-xs-8">{{activity.title}}</div>
+    <div class="btn-group col-xs-2" dropdown is-open="status.isopen" ng-if="admin">
+      <button type="button" class="btn btn-default dropdown-toggle">
+        <span class="caption">admin actions</span>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a ng-href="#/createActivity"><span class="glyphicon glyphicon-plus"></span> create new activity</a></li>
+        <li><a ng-click="editActivity()"><span class="glyphicon glyphicon-pencil"></span> edit activity</a></li>
+        <li><a ng-click="sendMassMail()"><span class="glyphicon glyphicon-envelope"></span> send mass mail to all participants</a></li>
+        <li><a ng-href="rest/pdf/activity/{{activity.id}}"><span class="glyphicon glyphicon-file pdf"></span> get participants list as pdf</a></li>
+        <li><a ng-href="rest/spreadsheet/activity/{{activity.id}}"><span class="glyphicon glyphicon-file xls"></span> get participants list as Excel spreadsheet</a></li>
+        <li><a ng-click="removeActivity()"><span class="glyphicon glyphicon-trash"></span> delete activity</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <div><span class="glyphicon glyphicon-time"></span> {{timeString}}</div>
+      <div ng-if="loggedIn">
+        <span class="glyphicon glyphicon-bullhorn"></span>
+        <span> contact:</span>
+        <span class="label label-default" ng-repeat="contact in contacts" ng-click="profile(contact)">{{contact.username}}</span>
+      </div>
+      <carousel interval="5000" ng-if="activity.images && activity.images.length > 0" class="activity-carousel">
+        <slide ng-repeat="image in activity.images">
+          <div class="activity-carousel-image" style="background-image: url('/rest/images/{{image.file}}')"></div>
+        </slide>
+      </carousel>
+      <div class="activity-description" ng-bind-html="activity.description"></div>
+      <span class="btn btn-success" ng-click="joinActivity()" ng-if="!joined && loggedIn" ladda="joining" ng-disabled="limitReached"><span class="glyphicon glyphicon-ok"></span> join activity</span>
+      <span class="btn btn-danger" ng-click="leaveActivity()" ng-if="joined" ladda="joining"><span class="glyphicon glyphicon-remove"></span> leave activity</span>
+    </div>
+    <ui-gmap-google-map center="map.center" zoom="map.zoom" class="activity-map col-xs-12 col-sm-6 ">
+      <ui-gmap-marker ng-if="activity" coords="activity.location" idKey="activity.id"></ui-gmap-marker>
+    </ui-gmap-google-map>
+    <div ng-if="loggedIn">
+      <span class="glyphicon glyphicon-user"></span>
+      <span> {{participants.length}} participants {{limitationString}}:</span>
+      <span class="label label-default participant" ng-repeat="participant in participants">{{participant.username}}</span>
+    </div>
+  </div>
+</div>

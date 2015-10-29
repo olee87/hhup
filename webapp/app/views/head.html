@@ -1,0 +1,45 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Hamburg CS Invasion 2015</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">menu<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a ng-href="#/activities" data-toggle="collapse" data-target=".navbar-collapse">program</a></li>
+            <li><a ng-href="#/users" active="/users" data-toggle="collapse" data-target=".navbar-collapse">who is coming</a></li>
+            <li><a ng-if="user" ng-href="#/couchmarket" active="/couchmarket" data-toggle="collapse" data-target=".navbar-collapse">couch market</a></li>
+            <li><a ng-if="user" ng-href="#/guestbook" active="/guestbook" data-toggle="collapse" data-target=".navbar-collapse">guestbook</a></li>
+            <li><a ng-href="#/about" active="/about" data-toggle="collapse" data-target=".navbar-collapse">about</span></a></li>
+            <li><a ng-if="user" ng-href="#/pay" data-toggle="collapse" data-target=".navbar-collapse"></span> make payment</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a ng-if="user" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-star" ng-if="admin"></span>
+            <span>{{user.username}}</span>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu user-menu" role="menu">
+            <li><a ng-href="#/users/{{user.id}}" data-toggle="collapse" data-target=".navbar-collapse"><span class="glyphicon glyphicon-user"></span> my profile</a></li>
+            <li><a ng-href="#/myProfile/edit" data-toggle="collapse" data-target=".navbar-collapse"><span class="glyphicon glyphicon-pencil"></span> edit my profile</a></li>
+            <li><a ng-href="#/pay" data-toggle="collapse" data-target=".navbar-collapse"><span class="glyphicon glyphicon-eur"></span> make payment</a></li>
+            <li><a ng-click="logout()" data-toggle="collapse" data-target=".navbar-collapse"><span class="glyphicon glyphicon-log-out"></span> logout</a></li>
+          </ul>
+        </li>
+        <li><a ng-if="!user" ng-href="#/signup" active="/signup">sign up</span></a></li>
+        <li><a ng-if="!user" ng-click="login()"><span class="glyphicon glyphicon-log-in"></span> login</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

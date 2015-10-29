@@ -1,0 +1,89 @@
+<h3 class="center">{{pageTitle}}</h3>
+<div class="input-group">
+  <div class="input-group-addon event-property">title</div>
+  <input type="text" class="form-control" placeholder="what is the title of this activity? keep it brief" ng-model="title">
+</div>
+<div class="input-group">
+  <div class="input-group-addon event-property">description</div>
+  <textarea class="form-control event-description" placeholder="what is this activity about? describe it" ng-model="description"></textarea>
+</div>
+<div class="input-group">
+  <div class="input-group-addon event-property">contact</div>
+  <ui-select multiple ng-model="user.selected" theme="bootstrap" ng-disabled="disabled" class="form-control user-select">
+    <ui-select-match placeholder="who is in charge for this? select user(s)...">
+      <span tooltip-html-unsafe="{{tooltip($item)}}" class="user-tag">{{itemName($item)}}</span>
+    </ui-select-match>
+    <ui-select-choices repeat="user in availableUsers | propsFilter: {realName: $select.search, username: $select.search}">
+      <div>
+        <div ng-bind-html="displayName(user, $select.search)"></div>
+        <small ng-if="user.realName">real name: {{user.realName}},</small>
+        <small>username: {{user.username}}</small>
+      </div>
+    </ui-select-choices>
+  </ui-select>
+</div>
+<div class="input-group">
+  <span class="input-group-addon event-property">time</span>
+  <span class="time-container form-control">
+    <a class="dropdown">
+      <div class="btn btn-default dropdown-toggle" id="dropdownStart" role="button" data-toggle="dropdown" data-target="#">{{startDateString ? startDateString : 'pick start'}}</div>
+      <ul class="dropdown-menu" role="menu">
+        <datetimepicker data-ng-model="startDate" data-datetimepicker-config="{ dropdownSelector: '#dropdownStart', startView: 'day' }"/>
+      </ul>
+    </a>
+    until
+    <a class="dropdown">
+      <div class="btn btn-default dropdown-toggle" id="dropdownEnd" role="button" data-toggle="dropdown" data-target="#">{{endDateString ? endDateString : 'pick end'}}</div>
+      <ul class="dropdown-menu" role="menu">
+        <datetimepicker data-ng-model="endDate" data-datetimepicker-config="{ dropdownSelector: '#dropdownEnd', startView: 'day' }"/>
+      </ul>
+    </a>
+  </span>
+</div>
+<div class="input-group activity-options">
+  <div class="input-group-addon event-property">options</div>
+  <div class="form-control activity-options">
+    <label title="show this activity as a big item in the program overview">
+      <input type="checkbox" class="checkbox-inline" ng-model="fullSize">
+      full size
+    </label>
+    <label title="people will not be able to participate in two activities that have this option activated and overlap">
+      <input type="checkbox" class="checkbox-inline" ng-model="canCollide">
+      can collide
+    </label>
+    <label title="limit the maximum number of participants">
+      <input type="checkbox" class="checkbox-inline" ng-model="limited">
+      limited participants: 
+      <input type="number" min="1" ng-model="limit" style="min-height: initial; width: 50px;">
+    </label>
+  </div>
+</div>
+<div class="input-group">
+  <div class="input-group-addon event-property">images</div>
+  <div class="form-control image-input">
+    <div ng-repeat="image in images" class="panel image-panel">
+      <img src="rest/images/{{image.file}}">
+      <span class="btn btn-primary btn-leading" ng-if="!image.leading" ng-click="makeLeading(image.file)" title="make this the primary image">
+        <span class="glyphicon glyphicon-pushpin"></span>
+      </span>
+      <span class="btn btn-success btn-leading" ng-if="image.leading" title="this is the primary image">
+        <span class="glyphicon glyphicon-ok"></span>
+      </span>
+      <span class="btn btn-danger btn-remove" ng-click="removeImage(image)" title="remove">
+        <span class="glyphicon glyphicon-remove"></span>
+      </span>
+    </div>
+    <div class="btn btn-default btn-upload btn-add" upload-button url="/rest/uploadImage" accept="jpeg, png"
+      on-upload="imageUploadStarted()" on-success="imageUploadSuccess(response)" on-error="imageUploadError(response)"
+      title="add a new image"
+    ><span class="glyphicon glyphicon-plus"></span></div>
+  </div>
+</div>
+<div class="input-group">
+  <div class="input-group-addon event-property">location</div>
+  <ui-gmap-google-map center="map.center" zoom="map.zoom" events="map.events" class="create-activity-map">
+    <ui-gmap-marker ng-if="marker" idKey="marker.id" coords="marker.coords" options="markerOptions"><ui-gmap-marker>
+  </ui-gmap-google-map>
+</div>
+<div class="btn btn-warning btn-reset col-xs-3" ng-click="cancel()" ng-disabled="disable">cancel</div>
+<div id='submit' class="btn btn-success btn-submit col-xs-9" ng-disabled="disable || !valid" ng-click="send()" ladda="submitting">save  <div class="glyphicon glyphicon-ok"></div></div>

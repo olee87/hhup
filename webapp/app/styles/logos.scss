@@ -1,0 +1,38 @@
+.small-logo {
+	float: left;
+	margin: 0 5px 0 0;
+	width: 24px;
+	background: url(../images/logos_small.png) no-repeat;
+}
+
+.small-logo.cs {
+	margin-top: 4px;
+	background-position: 0 0;
+	height: 16px;
+}
+
+.small-logo.bw {
+	background-position: 0 -17px;
+	height: 25px;
+}
+
+.small-logo.fb {
+	background-position: 0 -42px;
+	height: 25px;
+}
+
+.small-logo.hc {
+	margin-top: 3px;
+	background-position: 0 -70px;
+	height: 18px;
+}
+
+.small-logo.pdf {
+	background-position: 0 -89px;
+	height: 24px;
+}
+
+.small-logo.xls {
+	background-position: 0 -115px;
+	height: 24px;
+}

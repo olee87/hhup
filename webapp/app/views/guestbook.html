@@ -1,0 +1,26 @@
+<div class="top-bar row">
+  <div class="title col-xs-12">Guestbook</div>
+</div>
+<div class="guestbook-post row" ng-repeat="post in posts | orderBy : 'creationTime'">
+  <div class="col-xs-4 col-sm-2 col-lg-1 user">
+    <div><a ng-click="profile(post.authorId)">{{users[post.authorId].username}}</a></div>
+    <div>{{post.creationTime | date: 'dd.MM. HH:mm'}}</div>
+  </div>
+  <div class="panel col-xs-8 col-sm-10 col-lg-11 balloon">
+    <span>{{post.message}}</span>
+    <div class="delete-button" ng-if="mayDelete(post)" ng-click="deletePost(post.id)">
+      <span class="glyphicon glyphicon-remove"></span>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4 col-sm-2 col-lg-1"></div>
+  <div class="col-xs-8 col-sm-10 col-lg-11">
+    <div class="input-group">
+      <input type="text" class="form-control create-post" ng-model="newMessage" placeholder="enter your post (plain text, no markup)..." enter-pressed="createPost()">
+      <span class="input-group-btn">
+        <button class="btn btn-default send" type="button" ng-click="createPost()">send!</button>
+      </span>
+    </div>
+  </div>
+</div>

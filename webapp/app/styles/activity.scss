@@ -1,0 +1,43 @@
+.activity-map .angular-google-map .angular-google-map-container {
+	height: 400px;
+}
+
+.activity-description {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.admin-actions {
+	margin-bottom: 20px;
+}
+
+.glyphicon-file.pdf {
+	color: #b91818
+}
+
+.glyphicon-file.xls {
+	color: #49e475
+}
+
+.participant {
+	margin: 4px;
+}
+
+.activity-carousel {
+	margin: 8px 0;
+}
+
+.activity-carousel, .activity-carousel-image, .carousel-control{
+	border-radius: 10px;
+}
+
+.activity-carousel-image {
+	width: 520px;
+	height: 320px;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}

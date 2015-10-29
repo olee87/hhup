@@ -1,0 +1,29 @@
+{
+  "name": "hhup-webapp",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "1.2.x",
+    "json3": "~3.3.1",
+    "es5-shim": "~3.1.0",
+    "bootstrap-sass-official": "~3.3.2",
+    "angular-resource": "1.2.x",
+    "angular-cookies": "1.2.x",
+    "angular-sanitize": "1.2.x",
+    "angular-touch": "1.2.x",
+    "angular-route": "1.2.x",
+    "angular-google-places-autocomplete": "~0.2.4",
+    "jssha": "~1.5.0",
+    "angular-bootstrap": "~0.11.0",
+    "angular-ladda": "~0.1.6",
+    "angular-ui-select": "~0.9.6",
+    "angular-bootstrap-datetimepicker": "~0.2.4",
+    "angular-google-maps": "~2.0.12",
+    "angular-upload": "~1.0.11",
+    "angularjs-nvd3-directives": "~0.0.7"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.x",
+    "angular-scenario": "1.2.x"
+  },
+  "appPath": "app"
+}

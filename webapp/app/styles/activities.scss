@@ -1,0 +1,110 @@
+.positioned {
+  position: relative;
+}
+
+.activity {
+  box-shadow: 5px 5px 10px 0px rgba(60, 60, 60, 0.50);
+  min-height: 200px;
+  max-height: 200px;
+  margin: 3px 2px 7px 3px;
+  border-width: 3px;
+  overflow: hidden;
+  border-color: rgba(90, 90, 90, 1.0);
+  min-width: 100px;
+  transition: 0.2s ease-in-out;
+}
+
+.activity:hover, .activity.highlight {
+  box-shadow: 8px 8px 25px 0px rgba(110, 110, 110, 0.50);
+  margin: 0 5px 10px 0;
+  border-color: rgba(40, 40, 40, 1.0);
+}
+
+.invert {
+  transition: all 0.2s ease-in-out;
+  background-color: rgba(90, 90, 90, 1.0);
+  color: rgba(220, 220, 220, 1.0);
+}
+
+.activity:hover .invert, .activity.highlight .invert {
+  background-color: rgba(40, 40, 40, 1.0);
+  color: rgba(255, 255, 255, 1.0);
+}
+
+.c-more {
+  position: absolute;
+  left: 21px;
+  top: 160px;
+  height: 40px;
+  background-color: rgba(90, 90, 90, 0.85);
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+  width: 100px;
+  border-radius: 0 15px 0 0;
+  color: rgba(220, 220, 220, 1.0);
+  padding: 8px;
+}
+
+.activity:hover .c-more, .activity.highlight .c-more {
+  background-color:  rgba(35, 35, 35, 0.75);
+  color: rgba(180, 180, 180, 1.0);
+  left: 18px;
+  top: 157px;
+}
+
+.c-more:hover {
+  color: rgba(255, 255, 255, 1.0) !important;
+}
+.activity .title {
+  text-align: center;
+  padding: 0 3px 0 3px;
+  border-bottom: 1px solid #c1c1c1;
+}
+
+/* .activities { */
+/*   height: 600px; */
+/*   overflow-y: scroll; */
+/* } */
+
+.activity-image , .activity-image img {
+  width: 100%;
+}
+
+.activity-image {
+  margin-top: 4px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: left center;
+  height: 158px;
+}
+
+.activity-date {
+  border-top: 3px dashed #aaa;
+  margin-top: 10px;
+  text-align: center;
+  font-size: xx-large;
+}
+
+.activities-map-container {
+  display: none;
+  position: absolute;
+  transition: all 0.2s ease-in-out;
+  right: -30px;
+  width: 400px;
+  top: 40px;
+}
+
+.activities-map .angular-google-map .angular-google-map-container {
+  height: 500px;
+  box-shadow: 5px 5px 10px 0px rgba(60, 60, 60, 0.50);
+  margin: 0 15px;
+  border: 3px solid rgba(90, 90, 90, 1.0);
+  border-radius: 5px;
+/*   display: none; */
+}
+
+@media screen and (min-width: 1280px) { 
+  .activities-map-container {
+    display: block;
+  }
+}

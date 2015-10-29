@@ -1,0 +1,18 @@
+hhup.ownHostName=http://www.invasion.hamburg
+hhup.httpPort=8090
+hhup.webappDir=current/webapp/dist
+hhup.repository=repo/
+hhup.mail.host=some.mail.host
+hhup.mail.port=587
+hhup.mail.protocol=smtp
+hhup.mail.username=username@host.com
+hhup.mail.password=secret
+hhup.mail.fromAddress=From Address
+hhup.mail.simulate=false
+hhup.paypal.costPerUser: 10.72
+hhup.paypal.callbackUrl=paypal.callback.url
+hhup.paypal.sandbox: true,
+hhup.paypal.receiverEmail=paypal.receiver@mail.com
+hhup.event.description=Hamburg CouchSurfing Invasion 2016
+hhup.event.begin=2015-08-07T16:00:00.000+02:00
+hhup.event.end=2015-08-09T18:00:00.000+02:00"

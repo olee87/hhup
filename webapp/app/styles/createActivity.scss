@@ -1,0 +1,146 @@
+.event-description {
+	min-height: 160px;
+}
+
+.user-select {
+	padding-left: 0 !important;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #999 !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #999 !important;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #999 !important;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #999 !important;
+}
+.ui-select-search {
+	padding: 12px !important;
+	max-height: 41px !important;
+	min-height: 41px !important;
+}
+
+.event-property {
+	min-width: 160px;
+}
+
+.datetime {
+	cursor: pointer !important;
+}
+
+.multicontainer {
+	display: inline-flex;
+}
+
+.multicontainer input {
+	min-height: 13px;
+	margin-left: 10px;
+	margin-top: 1px;
+}
+
+.user-tag {
+	min-height: 25px;
+	min-width: 120px;
+}
+
+.center {
+	text-align: center;
+}
+
+.ui-select-match-item {
+	height: 40px !important;
+	font-size: 14px !important;
+	margin-left: 4px !important;
+	margin-right: 0 !important;
+	padding: 8px;
+}
+
+.ui-select-match-close {
+	padding-top: 3px;
+}
+
+.form-control[readonly] {
+	background-color: white !important;
+}
+
+textarea {
+	resize: none;
+}
+
+.create-activity-map .angular-google-map .angular-google-map-container {
+	height: 400px;
+}
+
+.angular-google-map-container {
+	border: 1px solid #ccc;
+}
+
+.image-input {
+	min-height: 104px;
+	background-color: #eee;
+}
+
+.image-panel {
+	display: inline-block;
+	padding: 3px;
+	border: 1px solid #aaa;
+	margin-right: 4px;
+	position: relative;
+}
+
+.image-panel .btn-remove, .image-panel .btn-leading {
+	height: 16px;
+	padding: 1px 0 0 1px;
+	font-size: 10px;
+	width: 16px;
+	border: 1px solid;
+	position: absolute;
+	top: -4px;
+	border-radius: 8px;
+}
+
+.image-panel .btn-remove {
+	right: -4px;
+}
+
+.image-panel .btn-leading {
+	right: 15px;
+}
+
+.image-panel img {
+	height: 80px;
+}
+
+.image-input .btn-add {
+	height: 86px;
+	width: 100px;
+	font-size: 22px;
+	border: 1px dashed #aaa;
+	padding: 24px;
+}
+
+.activity-options {
+	min-height: 60px;
+}
+
+.activity-options .checkbox-inline {
+	margin-top: -3px;
+	height: 35px
+}
+
+.activity-options label {
+	margin-right: 20px;
+}
+
+.time-container {
+	min-height: 50px;
+}
+
+.form-control {
+  z-index: initial !important;
+}

@@ -1,0 +1,38 @@
+.bottom-line {
+	border-bottom: 2px solid #aaa;
+}
+
+.profile-title {
+	font-size: xx-large;
+	text-align: center;
+	border-bottom: 2px solid #aaa;
+}
+
+.user-flag {
+	margin-top: 4px;
+	margin-right: 5px;
+}
+
+.profile-headling {
+	text-align: center;
+	font-size: 28px;
+	background-color: #222;
+	color: #ddd;
+	border-radius: 0 0 15px 15px;
+}
+
+.history-item, .note-item {
+	padding: 5px;
+	margin: 3px 0;
+	border-radius: 5px;
+	border: 2px solid #444;
+}
+
+.note-item .title, .history-item .title {
+	padding: 3px;
+}
+
+.scroll {
+	overflow: auto;
+	max-height: 500px;
+}

@@ -1,0 +1,167 @@
+<div class="row">
+
+  <!-- USERNAME -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <span class="glyphicon glyphicon-user"></span>
+      <!--[if lte IE 9]>
+        <span class="ie-label">username</span>
+      <![endif]-->
+    </div>
+    <input type="text" class="form-control" placeholder="username" ng-model="user.username" ng-disabled="disable">
+    <div class="input-group-addon label-warning" ng-if="!user.username">required</div>
+    <div class="input-group-addon label-danger" ng-if="invalid.username">{{invalid.username}}</div>
+    <div class="input-group-addon label-success glyphicon glyphicon-ok" ng-if="!invalid.username && user.username.length > 0"></div>
+  </div>
+
+  <!-- PASSWORD -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <span>***</span>
+      <!--[if lte IE 9]>
+        <span class="ie-label">password</span>
+      <![endif]-->
+    </div>
+    <input type="password" class="form-control" placeholder="password" ng-model="user.password" ng-disabled="disable">
+    <div class="input-group-addon label-warning" ng-if="!user.password">required</div>
+    <div class="input-group-addon label-danger" ng-if="invalid.password">{{invalid.password}}</div>
+    <div class="input-group-addon label-success glyphicon glyphicon-ok" ng-if="!invalid.password && user.password.length > 0"></div>
+  </div>
+
+  <!-- REPEAT PASSWORD -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <span>***</span>
+      <!--[if lte IE 9]>
+        <span class="ie-label">repeat password</span>
+      <![endif]-->
+    </div>
+    <input type="password" class="form-control" placeholder="repeat password" ng-model="passwordConfirm" ng-disabled="disable">
+    <div class="input-group-addon label-warning" ng-if="!passwordConfirm">required</div>
+    <div class="input-group-addon label-danger" ng-if="invalid.passwordConfirm">{{invalid.passwordConfirm}}</div>
+    <div class="input-group-addon label-success glyphicon glyphicon-ok" ng-if="!invalid.passwordConfirm && passwordConfirm.length > 0"></div>
+  </div>
+
+  <!-- EMAIL -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <span>@</span>
+      <!--[if lte IE 9]>
+        <span class="ie-label">e-mail (only visible for admins)</span>
+      <![endif]-->
+    </div>
+    <input type="text" class="form-control" placeholder="e-mail (only visible for admins)" ng-model="user.email" ng-disabled="disable">
+    <div class="input-group-addon label-warning" ng-if="!user.email">required</div>
+    <div class="input-group-addon label-danger" ng-if="invalid.email">{{invalid.email}}</div>
+    <div class="input-group-addon label-success glyphicon glyphicon-ok" ng-if="!invalid.email && user.email.length > 0"></div>
+  </div>
+
+  <!-- REAL NAME -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <span class="glyphicon glyphicon-credit-card"></span>
+      <!--[if lte IE 9]>
+        <span class="ie-label">real name</span>
+      <![endif]-->
+    </div>
+    <input type="text" class="form-control" placeholder="real name" ng-model="user.realName" ng-disabled="disable">
+  </div>
+  
+  <!-- PHONE -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <span class="glyphicon glyphicon-phone"></span>
+      <!--[if lte IE 9]>
+        <span class="ie-label">phone number (only visible for admins)</span>
+      <![endif]-->
+    </div>
+    <input type="text" class="form-control" placeholder="phone number (only visible for admins)" ng-model="user.phone" ng-disabled="disable">
+  </div>
+
+  <!-- NATIONALITY -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon glyphicon glyphicon-globe left"></div>
+    <select class="form-control" ng-model="nationalities.selected" ng-options="n.natn for n in nationalities.available" ng-disabled="disable">
+      <option value="">nationality</option>
+    </select>
+    <div class="input-group-addon" ng-if="nationalities.selected"><div ng-class="nationalities.selected ? nationalities.selected.flag : ''">&nbsp;</div></div>
+  </div>
+
+  <!-- LANGUAGES -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <span class="glyphicon glyphicon-comment"></span>
+      <!--[if lte IE 9]>
+        <span class="ie-label">spoken languages</span>
+      <![endif]-->
+    </div>
+    <ui-select multiple ng-model="languages.selected" theme="bootstrap" ng-disabled="disable" class="form-control user-select">
+      <ui-select-match placeholder="spoken languages">
+        <span class="user-tag"><span tooltip-html-unsafe="{{$item.natn}}" ng-class="$item.flag" class=select-match-flag></span></span>
+      </ui-select-match>
+      <ui-select-choices repeat="language in languages.available | propsFilter: {natn: $select.search}">
+        <div>
+          <span ng-bind-html="displayName(language, $select.search)"></span>
+          <span ng-class="language.flag" class="select-choice-flag"></span>
+        </div>
+      </ui-select-choices>
+    </ui-select>
+  </div>
+
+  <!-- HOMETOWN -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <span class="glyphicon glyphicon-home"></span>
+      <!--[if lte IE 9]>
+        <span class="ie-label">hometown</span>
+      <![endif]-->
+    </div>
+    <input g-places-autocomplete options="{types:['(cities)']}" type="text" class="form-control" placeholder="hometown" ng-model="home" ng-disabled="disable">
+  </div>
+
+  <!-- CS PROFILE -->
+  <div class="input-group spaced-bottom" ng-disabled="disable">
+    <div class="input-group-addon left">
+      <div class="small-logo cs"></div>
+      <!--[if lte IE 9]>
+        <span class="ie-label">paste your CouchSurfing profile URL</span>
+      <![endif]-->
+    </div>
+    <input type="text" class="form-control" placeholder="paste your CouchSurfing profile URL" ng-model="user.csProfile" ng-disabled="disable">
+  </div>
+
+  <!-- HC PROFILE -->
+  <div class="input-group spaced-bottom" ng-disabled="disable">
+    <div class="input-group-addon left">
+      <div class="small-logo hc"></div>
+      <!--[if lte IE 9]>
+        <span class="ie-label">paste your hospitality club profile URL</span>
+      <![endif]-->
+    </div>
+    <input type="text" class="form-control" placeholder="paste your hospitality club profile URL" ng-model="user.hcProfile" ng-disabled="disable">
+  </div>
+
+  <!-- BW PROFILE -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <div class="small-logo bw"></div>
+      <!--[if lte IE 9]>
+        <span class="ie-label">paste your BeWelcome profile URL</span>
+      <![endif]-->
+    </div>
+    <input type="text" class="form-control" placeholder="paste your BeWelcome profile URL" ng-model="user.bwProfile" ng-disabled="disable">
+  </div>
+
+  <!-- FB PROFILE -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <div class="small-logo fb"></div>
+      <!--[if lte IE 9]>
+        <span class="ie-label">paste your facebook profile URL</span>
+      <![endif]-->
+    </div>
+    <input type="text" class="form-control" placeholder="paste your facebook profile URL" ng-model="user.fbProfile" ng-disabled="disable">
+  </div>
+<!--   <div class="btn btn-danger btn-reset col-xs-3" ng-click="manualReset()" ng-disabled="disable">reset</div> -->
+  <div id='submit' class="btn btn-success btn-submit col-xs-12" ng-disabled="submitDisable || disable" ng-click="submit()" ladda="submitting">submit  <div class="glyphicon glyphicon-send"></div></div>
+</div>

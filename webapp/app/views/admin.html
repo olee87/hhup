@@ -1,0 +1,53 @@
+<div class="top-bar row">
+  <div class="title col-xs-12">Admin Area</div>
+</div>
+<div class="input-group spaced-bottom">
+  <div class="input-group-addon glyphicon glyphicon-envelope left"></div>
+  <input type="text" class="form-control" placeholder="enter EMail address..." ng-model="testMailAddress">
+  <span class="input-group-btn">
+    <button class="btn btn-default" type="button" ng-click="sendTestMail()">send test mail ></button>
+  </span>
+</div>
+<div class="input-group spaced-bottom">
+  <div class="input-group-addon glyphicon glyphicon-open left"></div>
+  <select ng-model="repo" class="reposelect">
+    <option value="">select a repository...</option>
+    <option value="all">all</option>
+    <option value="users">users</option>
+    <option value="activities">activities</option>
+    <option value="guestbook">guestbook</option>
+    <option value="couchmarket">couchmarket</option>
+  </select>
+  <span class="input-group-btn">
+    <button class="btn btn-default" type="button" ng-click="reReadIn()">re-read-in from JSON ></button>
+  </span>
+</div>
+<div class="input-group spaced-bottom" tooltip="when activated, this message will be shown to each user after they login">
+  <div class="input-group-addon">
+    <span>active </span>
+    <input type="checkbox" ng-model="loginMessage.active">
+  </div>
+  <input type="text" class="form-control" placeholder="enter a login message..." ng-model="loginMessage.message">
+  <span class="input-group-btn">
+    <button class="btn btn-default" type="button" ng-click="setLoginMessage()">save ></button>
+  </span>
+</div>
+<div class="input-group spaced-bottom">
+  <div class="form-control btn btn-default" ng-click="sendMassMail()">send mass mail to all participants</div>
+</div>
+<!-- <div>{{userCountByCountry}}</div> -->
+<div class="panel">
+  <div class="statistics line">
+    <nvd3-line-chart data="signupsAndPayments" id="signupsAndPayments" xAxisTickFormat="xAxisFunction()" yAxisTickFormat="yAxisFunction()" width="550" height="350" showXAxis="false" showYAxis="false" interactive="true" tooltips="true"><svg></svg></nvd3-line-chart>
+  </div>
+  <div class="statistics pie">
+    <nvd3-pie-chart data="userCountByCountry" id="usersByCountry" width="550" height="350" x="xFunction()" y="yFunction()" tooltips="true"><svg></svg></nvd3-pie-chart>
+  </div>
+  <div class="statistics pie">
+    <nvd3-pie-chart data="paidUserCountByCountry" id="paidUsersByCountry" width="550" height="350" x="xFunction()" y="yFunction()" tooltips="true"><svg></svg></nvd3-pie-chart>
+  </div>
+  <div class="statistics horizontal-bar">
+    <nvd3-multi-bar-horizontal-chart data="paymentRatioByCountry" id="paymentRatioByCountry" width="550" height="350" tooltips="true" tooltipcontent="toolTipContentFunction()"><svg></svg></nvd3-multi-bar-horizontal-chart>
+  </div>
+</div>
+{{paymentRatioByCountry}}

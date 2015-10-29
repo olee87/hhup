@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+	<jmxConfigurator />
+
+ 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%d{ISO8601}, %-5p] [%thread] %.50c:%L - %msg %n</pattern>
+		</encoder>
+	</appender>
+	<appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>logs/hhup.log</File>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/hhup.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d{ISO8601}, %-5p] [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="errorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		
+		<File>logs/error.log</File>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d{ISO8601}, %-5p] [%t] %.40c:%L: %m%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="jetty"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/jetty.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/jetty_%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="paypal"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/paypal.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/paypal_%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+		</encoder>
+	</appender>
+  
+	<logger name="hhup.web" level="DEBUG" />
+	<logger name="hhup.service" level="DEBUG" />
+	<logger name="hhup.service.PaypalService" level="TRACE" additivity="false">
+		<appender-ref ref="paypal" />
+	</logger>
+	<logger name="hhup.web.controller.PaypalController" level="TRACE" additivity="false">
+		<appender-ref ref="paypal" />
+	</logger>
+		 
+	<root level="INFO">
+		<appender-ref ref="logfile" />
+		<appender-ref ref="errorLog" />
+		<appender-ref ref="STDOUT" /> 
+	</root>
+	
+</configuration>

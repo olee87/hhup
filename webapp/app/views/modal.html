@@ -1,0 +1,34 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{title}}</h3>
+</div>
+<div class="modal-body" ng-bind-html="message" ng-if="!enterMode"></div>
+<div class="modal-body" ng-if="inputMode">
+  <div ng-repeat="field in fields">
+    <!-- textarea -->
+    <textarea ng-if="field.type === 'textarea'" class="form-control" placeholder="{{field.caption}}" ng-model="result[field.name]"></textarea>
+    <!-- simple text -->
+    <input type="text" ng-if="field.type === 'text'" class="form-control" placeholder="{{field.caption}}" ng-model="result[field.name]">
+    <!-- simple text -->
+    <input type="number" ng-if="field.type === 'number'" class="form-control" placeholder="{{field.caption}}" ng-model="result[field.name]">
+    <!-- datetime -->
+    <div class="dropdown" ng-if="field.type === 'date'">
+     <a class="dropdown-toggle" id="dropdownStart" role="button" data-toggle="dropdown" data-target="#">
+       <div class="input-group">
+          <div class="input-group-addon event-property">begin</div>
+          <input readonly type="datetime" placeholder="{{field.caption}}" class="form-control datetime" data-ng-model="result[field.name]">
+       </div>
+      </a>
+     <ul class="dropdown-menu" role="menu">
+       <datetimepicker data-ng-model="result[field.name]" data-datetimepicker-config="{ dropdownSelector: '#dropdownStart', startView: 'hour' }"/>
+     </ul>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-warning" ng-click="cancel()" ng-if="buttons.cancel">Cancel</button>
+  <button class="btn btn-danger" ng-click="no()" ng-if="buttons.no">No</button>
+  <button class="btn btn-success" ng-click="yes()" ng-if="buttons.yes">Yes</button>
+  <button class="btn btn-default" ng-click="ok()" ng-if="buttons.ok">OK</button>
+  <button class="btn btn-default" ng-click="save()" ng-if="buttons.save">save</button>
+  <button class="btn btn-default" ng-click="save()" ng-if="buttons.submit">submit</button>
+</div>

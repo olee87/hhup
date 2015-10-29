@@ -1,0 +1,33 @@
+<div class="top-bar row">
+  <div class="title col-xs-12">Couch Market</div>
+</div>
+<span class="btn btn-default pull-right" ng-click="createPost()"><span class="glyphicon glyphicon-plus"></span>  create a post</span>
+<span>
+  <span>show:</span>
+  <input type="radio" name="showType" value="" ng-model="showType"> all
+  <input type="radio" name="showType" value="OFFER" ng-model="showType"> offers only
+  <input type="radio" name="showType" value="SEARCH" ng-model="showType"> searches only
+</span>
+<div class="panel pad-top users">
+  <table class="table table-striped table-hover table-condensed">
+    <tr>
+      <th>type</th>
+      <th>#sleeping spots</th>
+      <th>user</th>
+      <th>message</th>
+      <th></th>
+    </tr>
+    <tr ng-repeat="post in posts | filter: {type: showType}">
+      <td>{{lowercase(post.type)}}</td>
+      <td>{{post.count}}</td>
+      <td>
+        <a ng-click="profile(post.userId)">{{users[post.userId].username}}</a>
+      </td>
+      <td>{{post.text}}</td>
+      <td ng-if="own(post) || admin" class="actions">
+        <span class="glyphicon glyphicon-pencil" ng-click="edit(post)"></span>
+        <span class="glyphicon glyphicon-remove" ng-click="deletePost(post)"></span>
+      </td>
+    </tr>
+  </table>
+</div>

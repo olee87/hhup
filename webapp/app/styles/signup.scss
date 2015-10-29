@@ -1,0 +1,45 @@
+.spaced-bottom {
+	margin-bottom: 10px;
+}
+.input-group input, .input-group select, .input-group.input-group-addon{
+	min-height: 55px;
+}
+
+.input-group .input-group-addon input {
+	min-height: 10px;
+}
+
+.input-group-addon.glyphicon {
+	top: 0;
+}
+
+.input-group-addon.left {
+	min-width: 70px;
+	font-size: 20px;
+}
+
+.input-group-addon .small-logo {
+	margin-left: 12px;
+	margin-top: 1px;
+}
+
+.input-group-addon .caption {
+	margin-top: 7px;
+	margin-left: 68px;
+	font-size: 14px;
+}
+
+.btn-submit, .btn-reset {
+	height: 55px;
+	font-size: 30px;
+}
+
+.select-choice-flag,
+.select-match-flag {
+	margin-top: 3px;
+	margin-right: 5px;
+}
+
+.ie-label {
+	font-size: medium;
+}

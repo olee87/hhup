@@ -1,0 +1,113 @@
+<div class="row">
+
+  <!-- REAL NAME -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <span class="glyphicon glyphicon-credit-card"></span>
+      <!--[if lte IE 9]>
+        <span class="ie-label">real name</span>
+      <![endif]-->
+    </div>
+    <input type="text" class="form-control" placeholder="real name" ng-model="changedUser.realName" ng-disabled="disable">
+  </div>
+  
+  <!-- PHONE -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <span class="glyphicon glyphicon-phone"></span>
+      <!--[if lte IE 9]>
+        <span class="ie-label">phone number (only visible for admins)</span>
+      <![endif]-->
+    </div>
+    <input type="text" class="form-control" placeholder="phone number (only visible for admins)" ng-model="changedUser.phone" ng-disabled="disable">
+  </div>
+
+  <!-- NATIONALITY -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon glyphicon glyphicon-globe left"></div>
+    <select class="form-control" ng-model="nationalities.selected" ng-options="n.natn for n in nationalities.available" ng-disabled="disable">
+      <option value="">nationality</option>
+    </select>
+    <div class="input-group-addon" ng-if="nationalities.selected"><div ng-class="nationalities.selected ? nationalities.selected.flag : ''">&nbsp;</div></div>
+  </div>
+
+  <!-- LANGUAGES -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <span class="glyphicon glyphicon-comment"></span>
+      <!--[if lte IE 9]>
+        <span class="ie-label">spoken languages</span>
+      <![endif]-->
+    </div>
+    <ui-select multiple ng-model="languages.selected" theme="bootstrap" ng-disabled="disable" class="form-control user-select">
+      <ui-select-match placeholder="spoken languages">
+        <span class="user-tag"><span tooltip-html-unsafe="{{$item.natn}}" ng-class="$item.flag" class=select-match-flag></span></span>
+      </ui-select-match>
+      <ui-select-choices repeat="language in languages.available | propsFilter: {natn: $select.search}">
+        <div>
+          <span ng-bind-html="displayName(language, $select.search)"></span>
+          <span ng-class="language.flag" class="select-choice-flag"></span>
+        </div>
+      </ui-select-choices>
+    </ui-select>
+  </div>
+
+  <!-- HOMETOWN -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <span class="glyphicon glyphicon-home"></span>
+      <!--[if lte IE 9]>
+        <span class="ie-label">hometown</span>
+      <![endif]-->
+    </div>
+    <input g-places-autocomplete options="{types:['(cities)']}" type="text" class="form-control" placeholder="hometown" ng-model="home" ng-disabled="disable">
+  </div>
+
+  <!-- CS PROFILE -->
+  <div class="input-group spaced-bottom" ng-disabled="disable">
+    <div class="input-group-addon left">
+      <div class="small-logo cs"></div>
+      <!--[if lte IE 9]>
+        <span class="ie-label">paste your CouchSurfing profile URL</span>
+      <![endif]-->
+    </div>
+    <input type="text" class="form-control" placeholder="paste your CouchSurfing profile URL" ng-model="changedUser.csProfile" ng-disabled="disable">
+  </div>
+
+  <!-- HC PROFILE -->
+  <div class="input-group spaced-bottom" ng-disabled="disable">
+    <div class="input-group-addon left">
+      <div class="small-logo hc"></div>
+      <!--[if lte IE 9]>
+        <span class="ie-label">paste your hospitality club profile URL</span>
+      <![endif]-->
+    </div>
+    <input type="text" class="form-control" placeholder="paste your hospitality club profile URL" ng-model="changedUser.hcProfile" ng-disabled="disable">
+  </div>
+
+  <!-- BW PROFILE -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <div class="small-logo bw"></div>
+      <!--[if lte IE 9]>
+        <span class="ie-label">paste your BeWelcome profile URL</span>
+      <![endif]-->
+    </div>
+    <input type="text" class="form-control" placeholder="paste your BeWelcome profile URL" ng-model="changedUser.bwProfile" ng-disabled="disable">
+  </div>
+
+  <!-- FB PROFILE -->
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <div class="small-logo fb"></div>
+      <!--[if lte IE 9]>
+        <span class="ie-label">paste your facebook profile URL</span>
+      <![endif]-->
+    </div>
+    <input type="text" class="form-control" placeholder="paste your facebook profile URL" ng-model="changedUser.fbProfile" ng-disabled="disable">
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="btn btn-warning btn-reset col-xs-3" ng-click="cancel()" ng-disabled="disable">cancel</div>
+  <div id='submit' class="btn btn-success btn-submit col-xs-9" ng-disabled=" disable" ng-click="send()" ladda="submitting">save  <div class="glyphicon glyphicon-ok"></div></div>
+</div>

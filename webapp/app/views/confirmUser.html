@@ -1,0 +1,10 @@
+<div ng-if="confirmation === 'pending'">please wait...</div>
+<div ng-if="confirmation === 'unsuccessful'">Sorry, there is no account to be activated with this confirmation code.</div>
+<div ng-if="confirmation === 'successful'">
+  Great, you activated your account! You may now login (click login in the black bar above). <br><br> Here's what you should do next:
+  <ul>
+    <li><span class="important">Please make your payment as soon as possible.</span> See the <a href="/#/pay">payment page</a> for more details. You can find a link to the page in your profile and in your user menu in the the top right corner once you are logged in.</li>
+    <li>Visit the <a href="/#/activities">activities page</a> and join the activities you want to participate in. You can always get back to the page through the menu at the top.</li>
+    <li>Read more about Hamburg unsere Perle on the <a href="/#/about">about page</a>. You can find it in the menu at the top as well.</li>
+  </ul>
+</div>

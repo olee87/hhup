@@ -1,0 +1,79 @@
+<div class="top-bar row">
+  <div class="title col-xs-12">Payment</div>
+</div>
+<div>There are three ways to pay for HHUP: PayPal, bank transfer and cash on site. We want to encourage you to pay in advance because we have costs to cover before the event. Because of that it is cheaper for you if you pay through bank transfer (10€ p.p.) or paypal (10,72€ including paypal fees) compared to paying on site (15€ p.p.). However, if you prefer to pay on site, you can leave this page and just bring the 15€ to the first activity you attend (preferrably the welcome picnic)</div>
+<div>The fee includes:</div>
+<ul>
+  <li>a beautiful wristband</li>
+  <li>free entrance for our main venue on Saturday</li>
+  <li>two drink vouchers, worth 3€ each for the main party on Saturday</li>
+  <li>stuff we bring along for the different picnics and barbecues (grills, coal, soundsystem, torches ...)</li>
+</ul>
+<div>Please note that it can take up to several days for us to confirm your payment. You can see your status in your profile. If you feel like your payment has gone lost, please contact {{paypalConfig.receiverEmail}}.</div>
+
+<label>
+  <input type="checkbox" ng-model="payMultiple" ng-disabled="userIsPaid">
+  <span>pay for other/multiple participants</span>
+  <span ng-if="userIsPaid"> (you have paid for yourself already)</span>
+</label>
+<div ng-show="payMultiple">
+  <div>type in the names of the participants you want to pay for:</div>
+  <ui-select multiple ng-model="user.selected" theme="bootstrap" class="form-control user-select">
+    <ui-select-match placeholder="type in participants' names you want to pay for...">
+      <span tooltip-html-unsafe="{{tooltip($item)}}" class="user-tag">{{itemName($item)}}</span>
+    </ui-select-match>
+    <ui-select-choices repeat="user in availableUsers | propsFilter: {realName: $select.search, username: $select.search} | filter: {paid: false}">
+      <div>
+        <div ng-bind-html="displayName(user, $select.search)"></div>
+        <small ng-if="user.realName">real name: {{user.realName}},</small>
+        <small>username: {{user.username}}</small>
+      </div>
+    </ui-select-choices>
+  </ui-select>
+</div>
+
+<div>select your payment method:</div>
+<div class="row">
+  <form method="post" class="col-xs-12 col-sm-6" target="_blank" action="https://www.sandbox.paypal.com/cgi-bin/webscr" ng-if="paypalConfig.sandbox">
+    <div class="hide" id="errorBox"></div>
+    <input type="hidden" name="button" value="buynow">
+    <input type="hidden" name="item_name" value="Hamburg CouchSurfing Invasion">
+    <input type="hidden" name="quantity" value="{{paypal.quantity}}">
+    <input type="hidden" name="amount" value="{{paypal.amount}}">
+    <input type="hidden" name="currency_code" value="EUR">
+    <input type="hidden" name="shipping" value="0">
+    <input type="hidden" name="tax" value="0">
+    <input type="hidden" name="notify_url" value="{{paypalConfig.callbackUrl}}">
+    <input type="hidden" name="env" value="www.sandbox" ng-if="paypalConfig.sandbox">
+    <input type="hidden" name="custom" value="{{paypal.custom}}">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="business" value="{{paypalConfig.receiverEmail}}">
+    <input type="hidden" name="bn" value="JavaScriptButton_buynow">
+    <button type="submit" class="btn btn-default paypal-button" ng-disabled="paypal.quantity == 0">pay through PayPal ({{paypal.amount * paypal.quantity}}€)</button>
+  </form>
+  <form method="post" class="col-xs-12 col-sm-6" target="_blank" action="https://www.paypal.com/cgi-bin/webscr" ng-if="!paypalConfig.sandbox">
+    <div class="hide" id="errorBox"></div>
+    <input type="hidden" name="button" value="buynow">
+    <input type="hidden" name="item_name" value="Hamburg CouchSurfing Invasion">
+    <input type="hidden" name="quantity" value="{{paypal.quantity}}">
+    <input type="hidden" name="amount" value="{{paypal.amount}}">
+    <input type="hidden" name="currency_code" value="EUR">
+    <input type="hidden" name="shipping" value="0">
+    <input type="hidden" name="tax" value="0">
+    <input type="hidden" name="notify_url" value="{{paypalConfig.callbackUrl}}">
+    <input type="hidden" name="env" value="www.sandbox" ng-if="paypalConfig.sandbox">
+    <input type="hidden" name="custom" value="{{paypal.custom}}">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="business" value="{{paypalConfig.receiverEmail}}">
+    <input type="hidden" name="bn" value="JavaScriptButton_buynow">
+    <button type="submit" class="btn btn-default paypal-button" ng-disabled="paypal.quantity == 0">pay through PayPal ({{paypal.amount * paypal.quantity}}€)</button>
+  </form>
+  <div  class="btn btn-default col-xs-12 col-sm-6" ng-disabled="paypal.quantity == 0" ng-click="bankTransferClicked = true">pay through bank transfer ({{10 * paypal.quantity}}€)</div>
+</div>
+<div ng-show="bankTransferClicked" class="panel yellow">
+  <div>Please transfer <b>{{10 * paypal.quantity}}€</b> to Graham and use the following details: </div>
+  <div><b>Name:</b> Graham Appleby</div>
+  <div><b>IBAN:</b> DE96120300001004571145</div>
+  <div><b>BIC:</b> BYLADEM 1001</div>
+  <div><b>Purpose:</b> HHUP payment for {{selectedUserString()}}</div>
+</div>

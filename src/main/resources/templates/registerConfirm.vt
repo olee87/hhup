@@ -1,0 +1,7 @@
+<div style="font-size: 48px; text-align: center">Hamburg Unsere Perle</div>
+<div style="font-size: 32px; text-align: center">CouchSurfing Invasion 2015</div>
+<br>
+<br>
+<div>Hi $name, thank you for signing up for the Hamburg CouchSurfing Invasion 2015! To confirm your registration please click <a href="$link">here</a> or paste this link into your browser: $link </div>
+<br>
+<div>Cheers, your HHUP-Team</div>

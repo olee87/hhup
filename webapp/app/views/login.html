@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h3 class="modal-title">login</h3>
+</div>
+<div class="modal-body">
+  <div ng-if="error">
+    <alert type="danger" close="deleteError()">{{error}}</alert>
+  </div>
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left login"><span class="glyphicon glyphicon-user"></span> / @</div>
+    <input type="text" class="form-control" id="username" placeholder="username or email" ng-model="login.username" enter-pressed="login()">
+  </div>
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left login">***</div>
+    <input type="password" class="form-control" placeholder="password" ng-model="login.password" enter-pressed="doLogin()">
+  </div>
+  <label>
+    <input type="checkbox" ng-model="login.rememberMe" caption="remember me">
+    <span>keep me logged in</span>
+  </label>
+  <div>
+    <a ng-click="forgotPassword()">I forgot my password</a>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-success" ng-click="doLogin()" ng-disabled="login.disabled" ladda="sending">login</button>
+  <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+</div>

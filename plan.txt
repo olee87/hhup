@@ -1,0 +1,43 @@
+-=| TO DO |=-
+
+* sitemap
+
+* faciliate deployment (script?)
+
+* own mail server?
+
+* events loose 'contact' when editing. (not always???)
+
+* participants in activities:
+** give px margin right (is already there but sometimes missing??)
+** place under map
+** limit number ?
+
+* integrate spinners
+
+* make user list sortable (username, real name, ...)
+
+* auto-login after signup
+
+* make about items configurable
+
+** IE <10 : try out placeholder fix
+
+-=| PROBABLY NOT |=-
+
+* use real languages and not nationalities as languages
+** there is probably a race condition so that if two ppl sign up for an activity almost simultanousliy they may exceed the limit. - check limit in server again when singing up
+* statistics
+* waiting list for limited activities
+* squeeze in more columns in pdf / smaller font etc.
+* "close signup"-switch for activities
+* flag for early bird-option?
+* flag for t-shirt handed???
+
+* bugs
+** (/) language picker does not work when editing profile or signup. page loading takes very long -> combination of angular batarang and ui-select2
+
+* inter-browser issues
+** chrome on iphone seems to mess with the menu??
+
+* compress background to improve loading time

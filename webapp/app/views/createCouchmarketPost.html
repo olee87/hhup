@@ -1,0 +1,16 @@
+<div class="input-group">
+  <div class="input-group-addon event-property">type</div>
+  <select class="form-control" ng-model="post.type" ng-disabled="disable">
+    <option value="OFFER">offer</option>
+    <option value="SEARCH">search</option>
+  </select>
+</div>
+<div class="input-group">
+  <div class="input-group-addon event-property">#</div>
+  <input type="number" min="1" class="form-control" placeholder="how many sleeping spots do you need/offer?" ng-model="post.count">
+</div>
+<div class="input-group">
+  <div class="input-group-addon event-property">message</div>
+  <textarea class="form-control event-description" placeholder="type a message" ng-model="post.text"></textarea>
+</div>
+<div class="btn btn-default" ng-click="send()">submit</div>

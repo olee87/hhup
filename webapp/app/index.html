@@ -1,0 +1,140 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta name="google-site-verification" content="_jot-KSjwQ_BMneKvql9nJaW65mroCoQa0u-YDPnZz0" />
+    <meta charset="utf-8">
+    <title>Hamburg CouchSurfing Invasion 2015</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-google-places-autocomplete/src/autocomplete.css" />
+    <link rel="stylesheet" href="bower_components/angular-google-places-autocomplete/dist/autocomplete.min.css" />
+    <link rel="stylesheet" href="bower_components/ladda/dist/ladda.min.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" />
+    <link rel="stylesheet" href="bower_components/nvd3/src/nv.d3.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/activities.css">
+    <link rel="stylesheet" href="styles/activity.css">
+    <link rel="stylesheet" href="styles/flags.css">
+    <link rel="stylesheet" href="styles/users.css">
+    <link rel="stylesheet" href="styles/couchmarket.css">
+    <link rel="stylesheet" href="styles/logos.css">
+    <link rel="stylesheet" href="styles/head.css">
+    <link rel="stylesheet" href="styles/signup.css">
+    <link rel="stylesheet" href="styles/profile.css">
+    <link rel="stylesheet" href="styles/createActivity.css">
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/guestbook.css">
+    <link rel="stylesheet" href="styles/admin.css">
+    <link rel="stylesheet" href="styles/pay.css">
+    <link rel="stylesheet" href="styles/about.css">
+
+    <!-- endbuild -->
+  </head>
+  <body ng-app="hhupApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="header" ng-include="'views/head.html'" ng-controller="HeadCtrl"></div>
+
+    <div class="container main panel">
+
+      <div ng-view=""></div>
+
+      <div class="footer">
+        <p><span class="glyphicon glyphicon-heart"></span> from the Hamburg CS Invasion team</p>
+      </div>
+    </div>
+
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+    <!-- google api for autocomplete of places and embedded maps -->
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&region=GB"></script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-google-places-autocomplete/src/autocomplete.js"></script>
+    <script src="bower_components/jssha/src/sha.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/spin.js/spin.js"></script>
+    <script src="bower_components/ladda/dist/ladda.min.js"></script>
+    <script src="bower_components/angular-ladda/dist/angular-ladda.min.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+    <script src="bower_components/angular-upload/angular-upload.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/nvd3/nv.d3.js"></script>
+    <script src="bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+
+        <script src="scripts/controllers/pay.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/head.js"></script>
+        <script src="scripts/controllers/admin.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/users.js"></script>
+        <script src="scripts/controllers/modal.js"></script>
+        <script src="scripts/controllers/signup.js"></script>
+        <script src="scripts/controllers/profile.js"></script>
+        <script src="scripts/controllers/activity.js"></script>
+        <script src="scripts/controllers/guestbook.js"></script>
+        <script src="scripts/controllers/activities.js"></script>
+        <script src="scripts/controllers/editProfile.js"></script>
+        <script src="scripts/controllers/couchMarket.js"></script>
+        <script src="scripts/controllers/confirmUser.js"></script>
+        <script src="scripts/controllers/confirmReset.js"></script>
+        <script src="scripts/controllers/createActivity.js"></script>
+        <script src="scripts/controllers/recoverPassword.js"></script>
+        <script src="scripts/controllers/createCouchMarket.js"></script>
+        <script src="scripts/controllers/confirmRecoverPassword.js"></script>
+
+        <script src="scripts/services/nationalitiesService.js"></script>
+        <script src="scripts/services/validationService.js"></script>
+        <script src="scripts/services/formatService.js"></script>
+        <script src="scripts/services/modalService.js"></script>
+        <script src="scripts/services/restService.js"></script>
+
+        <script src="scripts/directives/nationality.js"></script>
+        <script src="scripts/directives/enterPressed.js"></script>
+        <script src="scripts/directives/scrollFollow.js"></script>
+
+        <script src="scripts/auth.js"></script>
+        <script src="scripts/paypal-button.min.js"></script>
+
+        <script src="scripts/filters/propsFilter.js"></script>
+        <!-- endbuild -->
+
+</body>
+</html>

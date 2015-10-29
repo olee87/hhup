@@ -1,0 +1,112 @@
+<div class="top-bar row">
+  <div class="title col-xs-10" ng-if="isOwnProfile">Your Profile</div>
+  <div class="title col-xs-10" ng-if="!isOwnProfile">{{user.username}}'s Profile</div>
+  <div class="btn-group col-xs-2" dropdown is-open="status.isopen" ng-if="admin">
+    <button type="button" class="btn btn-default dropdown-toggle">
+      <span class="caption">admin actions</span>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li ng-if="admin && !user.activated"><a ng-click="activate(true)">activate {{user.username}}</a></li>
+      <li ng-if="admin && user.activated"><a ng-click="activate(false)">deactivate {{user.username}}</a></li>
+      <li ng-if="admin && !user.paid"><a ng-click="paid(true)">confirm payment for {{user.username}}</a></li>
+      <li ng-if="admin && user.paid"><a ng-click="paid(false)">unconfirm payment for {{user.username}}</a></li>
+      <li ng-if="admin && !userIsAdmin"><a ng-click="makeAdmin(true)">make {{user.username}} admin</a></li>
+      <li ng-if="admin && userIsAdmin"><a ng-click="makeAdmin(false)">unmake {{user.username}} admin</a></li>
+      <li ng-if="admin"><a ng-click="setPassword()">change password for {{user.username}}</a></li>
+      <li ng-if="admin"><a ng-click="createNote()">create a note on {{user.username}}</a></li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="panel col-xs-12 col-sm-6">
+    <div class="profile-headling">details</div>
+    <table class="user-details table">
+      <tr ng-if="isOwnProfile">
+        <td>username:</td>
+        <td>{{user.username}}</td>
+      </tr>
+      <tr ng-if="user.realName">
+        <td>real name:</td>
+        <td>{{user.realName}}</td>
+      </tr>
+      <tr ng-if="isOwnProfile || admin">
+        <td>e-mail:</td>
+        <td>{{user.email}}</td>
+      </tr>
+      <tr>
+        <td>profiles:</td>
+        <td>
+          <a ng-if="user.csProfile" ng-href="{{user.csProfile}}"><span class="small-logo cs" tooltip="go to {{user.username}}'s CouchSurfing profile"></span></a>
+          <a ng-if="user.hcProfile" ng-href="{{user.hcProfile}}"><span class="small-logo hc" tooltip="go to {{user.username}}'s hospitality club profile"></span></a>
+          <a ng-if="user.bwProfile" ng-href="{{user.bwProfile}}"><span class="small-logo bw" tooltip="go to {{user.username}}'s BeWelcome profile"></span></a>
+          <a ng-if="user.fbProfile" ng-href="{{user.fbProfile}}"><span class="small-logo fb" tooltip="go to {{user.username}}'s facebook profile"></span></a>
+        </td>
+      </tr>
+      <tr ng-if="user.homeId">
+        <td>home:</td>
+        <td>{{strip(user.homeId.readable)}}</td>
+      </tr>
+      <tr ng-if="user.homeString">
+        <td>home:</td>
+        <td>{{user.homeString}}</td>
+      </tr>
+      <tr ng-if="user.phone && (isOwnProfile || userIsAdmin || admin)">
+        <td>phone:</td>
+        <td>{{user.phone}}</td>
+      </tr>
+      <tr ng-if="nationality">
+        <td>nationality:</td>
+        <td><span class="user-flag" ng-class="nationality.flag"></span><span>{{nationality.natn}}</span></td>
+      </tr>
+      <tr ng-if="languages">
+        <td>spoken languages:</td>
+        <td><span ng-repeat="language in languages" class="user-flag" ng-class="language.flag" tooltip-html-unsafe="{{language.natn}}"></span></td>
+      </tr>
+      <tr ng-if="userIsAdmin">
+        <td>admin</td>
+        <td><span class="glyphicon glyphicon-ok"></span></td>
+      </tr>
+      <tr ng-if="isOwnProfile || admin">
+        <td>paid</td>
+        <td ng-if="user.paid"><span class="glyphicon glyphicon-ok"></span></td>
+        <td ng-if="!user.paid"><span class="glyphicon glyphicon-remove"></span>  <a ng-if="isOwnProfile" href="/#/pay">make payment</a></td>
+      </tr>
+      <tr ng-if="admin">
+        <td>activated</td>
+        <td ng-if="user.activated"><span class="glyphicon glyphicon-ok"></span></td>
+        <td ng-if="!user.activated"><span class="glyphicon glyphicon-remove"></span></td>
+      </tr>
+    </table>
+  </div>
+  <div class="panel col-xs-12 col-sm-6">
+    <div class="profile-headling">activities</div>
+    <ul>
+      <li ng-repeat="activity in activities | orderBy : orderDate"><a href="/#/activities/{{activity.id}}">{{activity.title}}</a></li>
+    </ul>
+  </div>
+  <div class="panel col-xs-12 col-sm-6" ng-if="admin && notes.length > 0">
+    <div class="profile-headling">notes</div>
+    <div class="scroll">
+      <div ng-repeat="note in notes" class="panel note-item">
+        <div class="title invert">
+          <span><a ng-href="#/users/{{note.authorId}}">{{authors[note.authorId]}}</a>, </span>
+          <span>{{note.creationDate | date : 'dd. MMM yy, HH:mm'}}:</span>
+          <span class="glyphicon glyphicon-remove pull-right" ng-click="removeNote(note.id)"></span>
+        </div>
+        <div>{{note.text}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="panel col-xs-12 col-sm-6" ng-if="admin">
+    <div class="profile-headling">history</div>
+    <div class="scroll">
+      <div ng-repeat="item in userHistory" class="panel history-item">
+        <div class="title invert">
+          <span>{{item.date | date : 'dd. MMM yy, HH:mm'}}:</span>
+        </div>
+        <div>{{item.text}}</div>
+      </div>
+    </div>
+  </div>
+</div>
