@@ -16,3 +16,5 @@ hhup.paypal.receiverEmail=paypal.receiver@mail.com
 hhup.event.description=Hamburg CouchSurfing Invasion 2016
 hhup.event.begin=2015-08-07T16:00:00.000+02:00
 hhup.event.end=2015-08-09T18:00:00.000+02:00"
+server.tomcat.compression=on
+server.tomcat.compressableMimeTypes=*/*
