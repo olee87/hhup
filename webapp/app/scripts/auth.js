@@ -115,39 +115,6 @@ app.factory('authService', function($rootScope, httpBuffer) {
           $rootScope.$broadcast('event:auth-loginCancelled', data);
       }
   };
-})
-
-/**
-* $http interceptor.
-* On 401 response (without 'ignoreAuthModule' option) stores the request
-* and broadcasts 'event:auth-loginRequired'.
-*/
-.config(function($httpProvider) {
-
-  var interceptor = ['$rootScope', '$q', 'httpBuffer', function($rootScope, $q, httpBuffer) {
-      function success(response) {
-          return response;
-      }
-
-      function error(response) {
-          if (response.status === 401 && !response.config.ignoreAuthModule) {
-              var deferred = $q.defer();
-              httpBuffer.append(response.config, deferred);
-              $rootScope.$broadcast('event:auth-loginRequired', response);
-              return deferred.promise;
-          } else if (response.status === 403 && !response.config.ignoreAuthModule) {
-              $rootScope.$broadcast('event:auth-notAuthorized', response);
-          }
-          // otherwise, default behaviour
-          return $q.reject(response);
-      }
-
-      return function(promise) {
-          return promise.then(success, error);
-      };
-
-  }];
-  $httpProvider.responseInterceptors.push(interceptor);
 });
 
 /**

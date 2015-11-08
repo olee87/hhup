@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hhupApp').controller('HeadCtrl', function ($rootScope, $scope, $modal, $location, authenticationService, restService, modalService) {
+angular.module('hhupApp').controller('HeadCtrl', function ($rootScope, $scope, $uibModal, $location, authenticationService, restService, modalService) {
 
   authenticationService.autoLogin();
 
@@ -26,7 +26,7 @@ angular.module('hhupApp').controller('HeadCtrl', function ($rootScope, $scope, $
   });
 
   $scope.login = function() {
-    $modal.open({
+    $uibModal.open({
       templateUrl: 'views/login.html',
       controller: 'LoginCtrl'
     });

@@ -1,20 +1,20 @@
 <div class="top-bar row">
   <div class="title col-xs-10" ng-if="isOwnProfile">Your Profile</div>
   <div class="title col-xs-10" ng-if="!isOwnProfile">{{user.username}}'s Profile</div>
-  <div class="btn-group col-xs-2" dropdown is-open="status.isopen" ng-if="admin">
-    <button type="button" class="btn btn-default dropdown-toggle">
+  <div class="btn-group col-xs-2" uib-dropdown is-open="status.isopen" ng-if="admin">
+    <button type="button" class="btn btn-default" uib-dropdown-toggle>
       <span class="caption">admin actions</span>
       <span class="caret"></span>
     </button>
-    <ul class="dropdown-menu" role="menu">
-      <li ng-if="admin && !user.activated"><a ng-click="activate(true)">activate {{user.username}}</a></li>
-      <li ng-if="admin && user.activated"><a ng-click="activate(false)">deactivate {{user.username}}</a></li>
-      <li ng-if="admin && !user.paid"><a ng-click="paid(true)">confirm payment for {{user.username}}</a></li>
-      <li ng-if="admin && user.paid"><a ng-click="paid(false)">unconfirm payment for {{user.username}}</a></li>
-      <li ng-if="admin && !userIsAdmin"><a ng-click="makeAdmin(true)">make {{user.username}} admin</a></li>
-      <li ng-if="admin && userIsAdmin"><a ng-click="makeAdmin(false)">unmake {{user.username}} admin</a></li>
-      <li ng-if="admin"><a ng-click="setPassword()">change password for {{user.username}}</a></li>
-      <li ng-if="admin"><a ng-click="createNote()">create a note on {{user.username}}</a></li>
+    <ul class="uib-dropdown-menu" role="menu">
+      <li role="menuitem" ng-if="admin"><a ng-click="createNote()">create a note on {{user.username}}</a></li>
+      <li role="menuitem" ng-if="admin && !user.activated"><a ng-click="activate(true)">activate {{user.username}}</a></li>
+      <li role="menuitem" ng-if="admin && !user.paid"><a ng-click="paid(true)">confirm payment for {{user.username}}</a></li>
+      <li role="menuitem" ng-if="admin && user.paid"><a ng-click="paid(false)">unconfirm payment for {{user.username}}</a></li>
+      <li role="menuitem" ng-if="admin"><a ng-click="setPassword()">change password for {{user.username}}</a></li>
+      <li role="menuitem" ng-if="admin && !userIsAdmin"><a ng-click="makeAdmin(true)">make {{user.username}} admin</a></li>
+      <li role="menuitem" ng-if="admin && userIsAdmin"><a ng-click="makeAdmin(false)">unmake {{user.username}} admin</a></li>
+      <li role="menuitem" ng-if="admin && user.activated"><a ng-click="activate(false)">deactivate {{user.username}}</a></li>
     </ul>
   </div>
 </div>
@@ -37,10 +37,10 @@
       <tr>
         <td>profiles:</td>
         <td>
-          <a ng-if="user.csProfile" ng-href="{{user.csProfile}}"><span class="small-logo cs" tooltip="go to {{user.username}}'s CouchSurfing profile"></span></a>
-          <a ng-if="user.hcProfile" ng-href="{{user.hcProfile}}"><span class="small-logo hc" tooltip="go to {{user.username}}'s hospitality club profile"></span></a>
-          <a ng-if="user.bwProfile" ng-href="{{user.bwProfile}}"><span class="small-logo bw" tooltip="go to {{user.username}}'s BeWelcome profile"></span></a>
-          <a ng-if="user.fbProfile" ng-href="{{user.fbProfile}}"><span class="small-logo fb" tooltip="go to {{user.username}}'s facebook profile"></span></a>
+          <a ng-if="user.csProfile" ng-href="{{user.csProfile}}"><span class="small-logo cs" uib-tooltip="go to {{user.username}}'s CouchSurfing profile"></span></a>
+          <a ng-if="user.hcProfile" ng-href="{{user.hcProfile}}"><span class="small-logo hc" uib-tooltip="go to {{user.username}}'s hospitality club profile"></span></a>
+          <a ng-if="user.bwProfile" ng-href="{{user.bwProfile}}"><span class="small-logo bw" uib-tooltip="go to {{user.username}}'s BeWelcome profile"></span></a>
+          <a ng-if="user.fbProfile" ng-href="{{user.fbProfile}}"><span class="small-logo fb" uib-tooltip="go to {{user.username}}'s facebook profile"></span></a>
         </td>
       </tr>
       <tr ng-if="user.homeId">
@@ -61,7 +61,7 @@
       </tr>
       <tr ng-if="languages">
         <td>spoken languages:</td>
-        <td><span ng-repeat="language in languages" class="user-flag" ng-class="language.flag" tooltip-html-unsafe="{{language.natn}}"></span></td>
+        <td><span ng-repeat="language in languages" class="user-flag" ng-class="language.flag" uib-tooltip-html-unsafe="{{language.natn}}"></span></td>
       </tr>
       <tr ng-if="userIsAdmin">
         <td>admin</td>

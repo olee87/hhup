@@ -41,7 +41,7 @@
     </div>
     <ui-select multiple ng-model="languages.selected" theme="bootstrap" ng-disabled="disable" class="form-control user-select">
       <ui-select-match placeholder="spoken languages">
-        <span class="user-tag"><span tooltip-html-unsafe="{{$item.natn}}" ng-class="$item.flag" class=select-match-flag></span></span>
+        <span class="user-tag"><span uib-tooltip-html-unsafe="{{$item.natn}}" ng-class="$item.flag" class=select-match-flag></span></span>
       </ui-select-match>
       <ui-select-choices repeat="language in languages.available | propsFilter: {natn: $select.search}">
         <div>

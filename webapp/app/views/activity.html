@@ -5,12 +5,12 @@
       <span class="caption">back to program</span>
     </a>
     <div class="title col-xs-8">{{activity.title}}</div>
-    <div class="btn-group col-xs-2" dropdown is-open="status.isopen" ng-if="admin">
-      <button type="button" class="btn btn-default dropdown-toggle">
+    <div class="btn-group col-xs-2" uib-dropdown is-open="status.isopen" ng-if="admin">
+      <button type="button" class="btn btn-default" uib-dropdown-toggle>
         <span class="caption">admin actions</span>
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu" role="menu">
+      <ul class="uib-dropdown-menu" role="menu">
         <li><a ng-href="#/createActivity"><span class="glyphicon glyphicon-plus"></span> create new activity</a></li>
         <li><a ng-click="editActivity()"><span class="glyphicon glyphicon-pencil"></span> edit activity</a></li>
         <li><a ng-click="sendMassMail()"><span class="glyphicon glyphicon-envelope"></span> send mass mail to all participants</a></li>

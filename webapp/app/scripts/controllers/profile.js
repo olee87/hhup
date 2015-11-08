@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hhupApp').controller('ProfileCtrl', function($modal, $scope, $routeParams, $route,  $location, restService, nationalitiesService, authenticationService, modalService) {
+angular.module('hhupApp').controller('ProfileCtrl', function($scope, $routeParams, $route,  $location, restService, nationalitiesService, authenticationService, modalService) {
   $scope.strip = function(html) {
     return html.replace(/<(?:.|\n)*?>/gm, '');
   };
@@ -133,6 +133,24 @@ angular.module('hhupApp').controller('ProfileCtrl', function($modal, $scope, $ro
       modal.result.then(function(doMakeAdmin) {
         if (doMakeAdmin) {
           restService.admin().makeAdmin({userId: $scope.user.id, makeAdmin: admin}, function() {
+            var modal1 = modalService.message('success', bodyAnswer);
+            modal1.result.then(function() {
+              $route.reload();
+            });
+          });
+        }
+      });
+    };
+    
+    $scope.deleteUser = function() {
+      var titleQuestion = 'delete ' + $scope.user.username;
+      var bodyQuestion = 'Do you really want to delete ' + $scope.user.username + '\'s account? This is <b>irreversible</b>!';
+      var bodyAnswer = $scope.user.username + ' has been deleted';
+      var modal = modalService.question(titleQuestion, bodyQuestion);
+      modal.result.then(function(doMakeAdmin) {
+        if (doMakeAdmin) {
+          console.log('deleting ' + $scope.user.username);
+          restService.admin().deleteUser({userId: $scope.user.id}, function() {
             var modal1 = modalService.message('success', bodyAnswer);
             modal1.result.then(function() {
               $route.reload();

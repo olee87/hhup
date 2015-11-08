@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('hhupApp').controller('ConfirmResetCtrl', function($modalInstance, $scope) {
+angular.module('hhupApp').controller('ConfirmResetCtrl', function($uibModalInstance, $scope) {
   $scope.yes = function() {
-    $modalInstance.close(true);
+    $uibModalInstance.close(true);
   };
 
   $scope.no = function() {
-    $modalInstance.close(false);
+    $uibModalInstance.close(false);
   };
 });

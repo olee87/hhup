@@ -20,7 +20,7 @@
   <div>type in the names of the participants you want to pay for:</div>
   <ui-select multiple ng-model="user.selected" theme="bootstrap" class="form-control user-select">
     <ui-select-match placeholder="type in participants' names you want to pay for...">
-      <span tooltip-html-unsafe="{{tooltip($item)}}" class="user-tag">{{itemName($item)}}</span>
+      <span uib-tooltip-html-unsafe="{{tooltip($item)}}" class="user-tag">{{itemName($item)}}</span>
     </ui-select-match>
     <ui-select-choices repeat="user in availableUsers | propsFilter: {realName: $select.search, username: $select.search} | filter: {paid: false}">
       <div>

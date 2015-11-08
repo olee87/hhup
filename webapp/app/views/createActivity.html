@@ -11,7 +11,7 @@
   <div class="input-group-addon event-property">contact</div>
   <ui-select multiple ng-model="user.selected" theme="bootstrap" ng-disabled="disabled" class="form-control user-select">
     <ui-select-match placeholder="who is in charge for this? select user(s)...">
-      <span tooltip-html-unsafe="{{tooltip($item)}}" class="user-tag">{{itemName($item)}}</span>
+      <span uib-tooltip-html-unsafe="{{tooltip($item)}}" class="user-tag">{{itemName($item)}}</span>
     </ui-select-match>
     <ui-select-choices repeat="user in availableUsers | propsFilter: {realName: $select.search, username: $select.search}">
       <div>
@@ -25,19 +25,19 @@
 <div class="input-group">
   <span class="input-group-addon event-property">time</span>
   <span class="time-container form-control">
-    <a class="dropdown">
-      <div class="btn btn-default dropdown-toggle" id="dropdownStart" role="button" data-toggle="dropdown" data-target="#">{{startDateString ? startDateString : 'pick start'}}</div>
-      <ul class="dropdown-menu" role="menu">
-        <datetimepicker data-ng-model="startDate" data-datetimepicker-config="{ dropdownSelector: '#dropdownStart', startView: 'day' }"/>
+    <span class="dropdown">
+      <a class="btn btn-default dropdown-toggle" id="dropdownStart" role="button" data-toggle="dropdown" data-target="#">{{startDateString ? startDateString : 'pick start'}}</a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <datetimepicker data-ng-model="startDate" data-datetimepicker-config="{ dropdownSelector: '#dropdownStart', startView: 'day' }"></datetimepicker>
       </ul>
-    </a>
-    until
-    <a class="dropdown">
-      <div class="btn btn-default dropdown-toggle" id="dropdownEnd" role="button" data-toggle="dropdown" data-target="#">{{endDateString ? endDateString : 'pick end'}}</div>
-      <ul class="dropdown-menu" role="menu">
-        <datetimepicker data-ng-model="endDate" data-datetimepicker-config="{ dropdownSelector: '#dropdownEnd', startView: 'day' }"/>
+    </span>
+    <span>until</span>
+    <span class="dropdown">
+      <a class="btn btn-default dropdown-toggle" id="dropdownEnd" role="button" data-toggle="dropdown" data-target="#">{{endDateString ? endDateString : 'pick end'}}</a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <datetimepicker data-ng-model="endDate" data-datetimepicker-config="{ dropdownSelector: '#dropdownEnd', startView: 'day' }"></datetimepicker>
       </ul>
-    </a>
+    </span>
   </span>
 </div>
 <div class="input-group activity-options">

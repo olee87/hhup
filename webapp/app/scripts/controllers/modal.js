@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hhupApp').controller('ModalCtrl', function($modalInstance, $scope, message, title, buttons, inputMode, fields) {
+angular.module('hhupApp').controller('ModalCtrl', function($uibModalInstance, $scope, message, title, buttons, inputMode, fields) {
   
   $scope.message = message;
   $scope.title = title;
@@ -15,18 +15,18 @@ angular.module('hhupApp').controller('ModalCtrl', function($modalInstance, $scop
   });
 
   $scope.ok = function() {
-    $modalInstance.close(true);
+    $uibModalInstance.close(true);
   };
   $scope.yes = function() {
-    $modalInstance.close(true);
+    $uibModalInstance.close(true);
   };
   $scope.no = function() {
-    $modalInstance.close(false);
+    $uibModalInstance.close(false);
   };
   $scope.cancel = function() {
-    $modalInstance.dismiss();
+    $uibModalInstance.dismiss();
   };
   $scope.save = function() {
-    $modalInstance.close($scope.result);
+    $uibModalInstance.close($scope.result);
   };
 });

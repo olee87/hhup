@@ -1,12 +1,12 @@
 <div class="top-bar row">
   <div class="title col-xs-10">Program</div>
-  <div class="btn-group col-xs-2" dropdown is-open="status.isopen" ng-if="admin">
-    <button type="button" class="btn btn-default dropdown-toggle">
+  <div class="btn-group col-xs-2" uib-dropdown is-open="status.isopen" ng-if="admin">
+    <button type="button" class="btn btn-default" uib-dropdown-toggle>
       <span class="caption">admin actions</span>
       <span class="caret"></span>
     </button>
-    <ul class="dropdown-menu" role="menu">
-      <li><a ng-href="#/createActivity"><span class="glyphicon glyphicon-plus"></span> create new activity</a></li>
+    <ul class="uib-dropdown-menu" role="menu">
+      <li role="menuitem"><a ng-href="#/createActivity"><span class="glyphicon glyphicon-plus"></span> create new activity</a></li>
     </ul>
   </div>
 </div>

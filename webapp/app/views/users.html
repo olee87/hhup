@@ -1,13 +1,13 @@
 <div class="top-bar row">
   <div class="title col-xs-10">Participants</div>
-  <div class="btn-group col-xs-2" dropdown is-open="status.isopen" ng-if="admin">
-    <button type="button" class="btn btn-default dropdown-toggle">
+  <div class="btn-group col-xs-2" uib-dropdown is-open="status.isopen" ng-if="admin">
+    <button type="button" class="btn btn-default" uib-dropdown-toggle>
       <span class="caption">admin actions</span>
       <span class="caret"></span>
     </button>
-    <ul class="dropdown-menu" role="menu">
-      <li ng-if="admin"><a ng-href="rest/pdf/users"><span class="glyphicon glyphicon-file pdf"></span> export as PDF</a></li>
-      <li ng-if="admin"><a ng-href="rest/spreadsheet/users"><span class="glyphicon glyphicon-file xls"></span> export as Excel spreadsheet</a></li>
+    <ul class="uib-dropdown-menu" role="menu">
+      <li role="menuitem" ng-if="admin"><a ng-href="rest/pdf/users"><span class="glyphicon glyphicon-file pdf"></span> export as PDF</a></li>
+      <li role="menuitem" ng-if="admin"><a ng-href="rest/spreadsheet/users"><span class="glyphicon glyphicon-file xls"></span> export as Excel spreadsheet</a></li>
     </ul>
   </div>
 </div>
@@ -41,17 +41,17 @@
     </tr>
     <tr ng-repeat="user in users | filter: filterUsers">
       <td ng-click="profile(user)">
-        <span ng-if="isAdmin(user)" class="glyphicon glyphicon-star" tooltip="admin"></span>
-        <span ng-if="hasNote(user)" class="glyphicon glyphicon-paperclip" tooltip="note"></span>
+        <span ng-if="isAdmin(user)" class="glyphicon glyphicon-star" uib-tooltip="admin"></span>
+        <span ng-if="hasNote(user)" class="glyphicon glyphicon-paperclip" uib-tooltip="note"></span>
         <span>{{user.username}}</span>
         <span nationality="{{user.nationality}}"></span>
       </td>
       <td ng-click="profile(user)">{{user.realName}}</td>
       <td ng-if="isLoggedIn">
-        <a ng-if="user.csProfile" ng-href="{{user.csProfile}}"><span class="small-logo cs" tooltip="go to {{user.username}}'s CouchSurfing profile"></span></a>
-        <a ng-if="user.hcProfile" ng-href="{{user.hcProfile}}"><span class="small-logo hc" tooltip="go to {{user.username}}'s hospitality club profile"></span></a>
-        <a ng-if="user.bwProfile" ng-href="{{user.bwProfile}}"><span class="small-logo bw" tooltip="go to {{user.username}}'s BeWelcome profile"></span></a>
-        <a ng-if="user.fbProfile" ng-href="{{user.fbProfile}}"><span class="small-logo fb" tooltip="go to {{user.username}}'s facebook profile"></span></a>
+        <a ng-if="user.csProfile" ng-href="{{user.csProfile}}"><span class="small-logo cs" uib-tooltip="go to {{user.username}}'s CouchSurfing profile"></span></a>
+        <a ng-if="user.hcProfile" ng-href="{{user.hcProfile}}"><span class="small-logo hc" uib-tooltip="go to {{user.username}}'s hospitality club profile"></span></a>
+        <a ng-if="user.bwProfile" ng-href="{{user.bwProfile}}"><span class="small-logo bw" uib-tooltip="go to {{user.username}}'s BeWelcome profile"></span></a>
+        <a ng-if="user.fbProfile" ng-href="{{user.fbProfile}}"><span class="small-logo fb" uib-tooltip="go to {{user.username}}'s facebook profile"></span></a>
       </td>
       <td ng-if="admin" class="center">
         <span ng-if="user.paid" class="userlist-checkbox glyphicon glyphicon-check" ng-click="unMarkPaid(user)"></span>

@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('hhupApp').service('modalService', function($modal) {
+angular.module('hhupApp').service('modalService', function($uibModal) {
 
   this.error = function(title, text) {
-    return $modal.open({
+    return $uibModal.open({
       templateUrl: 'views/modal.html',
       controller: 'ModalCtrl',
       resolve: {
@@ -17,7 +17,7 @@ angular.module('hhupApp').service('modalService', function($modal) {
   };
 
   this.message = function(title, text) {
-    return $modal.open({
+    return $uibModal.open({
       templateUrl: 'views/modal.html',
       controller: 'ModalCtrl',
       resolve: {
@@ -31,7 +31,7 @@ angular.module('hhupApp').service('modalService', function($modal) {
   };
 
   this.question = function(title, text) {
-    return $modal.open({
+    return $uibModal.open({
       templateUrl: 'views/modal.html',
       controller: 'ModalCtrl',
       resolve: {
@@ -50,7 +50,7 @@ angular.module('hhupApp').service('modalService', function($modal) {
 
   // fields = [{caption: String, name: String, type: String},...]
   this.input = function(title, fields) {
-    return $modal.open({
+    return $uibModal.open({
       templateUrl: 'views/modal.html',
       controller: 'ModalCtrl',
       resolve: {

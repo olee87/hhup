@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hhupApp').controller('LoginCtrl', function($modalInstance, $location, $scope, authenticationService) {
+angular.module('hhupApp').controller('LoginCtrl', function($uibModalInstance, $location, $scope, authenticationService) {
 
   $scope.error = null;
   $scope.login = {
@@ -24,7 +24,7 @@ angular.module('hhupApp').controller('LoginCtrl', function($modalInstance, $loca
 
     $scope.$on('event:auth-loginConfirmed', function() {
       $scope.sending = false;
-      $modalInstance.close();
+      $uibModalInstance.close();
     });
 
     $scope.$on('event:auth-loginCancelled', function() {
@@ -37,7 +37,7 @@ angular.module('hhupApp').controller('LoginCtrl', function($modalInstance, $loca
   };
 
   $scope.cancel = function() {
-    $modalInstance.dismiss();
+    $uibModalInstance.dismiss();
   };
   
   $scope.deleteError = function() {
@@ -53,7 +53,7 @@ angular.module('hhupApp').controller('LoginCtrl', function($modalInstance, $loca
   });
   
   $scope.forgotPassword = function() {
-    $modalInstance.close();
+    $uibModalInstance.close();
     $location.path('/recoverPassword');
   };
 });
