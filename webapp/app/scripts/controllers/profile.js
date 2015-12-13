@@ -141,16 +141,16 @@ angular.module('hhupApp').controller('ProfileCtrl', function($scope, $routeParam
         }
       });
     };
-    
+
     $scope.deleteUser = function() {
       var titleQuestion = 'delete ' + $scope.user.username;
       var bodyQuestion = 'Do you really want to delete ' + $scope.user.username + '\'s account? This is <b>irreversible</b>!';
       var bodyAnswer = $scope.user.username + ' has been deleted';
       var modal = modalService.question(titleQuestion, bodyQuestion);
-      modal.result.then(function(doMakeAdmin) {
-        if (doMakeAdmin) {
+      modal.result.then(function(doDelete) {
+        if (doDelete) {
           console.log('deleting ' + $scope.user.username);
-          restService.admin().deleteUser({userId: $scope.user.id}, function() {
+          restService.admin().deleteUser({id: $scope.user.id}, function() {
             var modal1 = modalService.message('success', bodyAnswer);
             modal1.result.then(function() {
               $route.reload();

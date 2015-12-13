@@ -15,6 +15,7 @@
       <li role="menuitem" ng-if="admin && !userIsAdmin"><a ng-click="makeAdmin(true)">make {{user.username}} admin</a></li>
       <li role="menuitem" ng-if="admin && userIsAdmin"><a ng-click="makeAdmin(false)">unmake {{user.username}} admin</a></li>
       <li role="menuitem" ng-if="admin && user.activated"><a ng-click="activate(false)">deactivate {{user.username}}</a></li>
+      <li role="menuitem" ng-if="admin"><a ng-click="deleteUser()">delete {{user.username}}</a></li>
     </ul>
   </div>
 </div>

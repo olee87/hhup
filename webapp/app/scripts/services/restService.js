@@ -186,6 +186,10 @@ angular.module('hhupApp').service('restService', function($resource) {
         method: 'POST',
         url: '/rest/admin/makeAdmin'
       },
+      deleteUser: {
+        method: 'POST',
+        url: '/rest/admin/deleteUser'
+      },
       setActive: {
         method: 'POST',
         url: '/rest/admin/setActive'

@@ -539,4 +539,10 @@ public class UserService implements UserDetailsService {
 		return new org.springframework.security.core.userdetails.User(lowercaseLogin, user.getPassword(),
 				grantedAuthorities);
 	}
+
+	public void deleteUser(UUID id) throws UserNotFoundException {
+		InternalUserInfo user = getUserForId(id);
+		log.error("would delete user: " + user);
+		// TODO implement integrity checks
+	}
 }

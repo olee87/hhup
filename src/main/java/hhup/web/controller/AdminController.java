@@ -15,6 +15,7 @@ import hhup.web.request.MassMailRequest;
 import hhup.web.request.ReReadInRequest;
 import hhup.web.request.SendTestMailRequest;
 import hhup.web.request.SetActiveRequest;
+import hhup.web.request.UUIDRequest;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -53,6 +54,17 @@ public class AdminController {
 	public void makeAdmin(@RequestBody MakeAdminRequest request, HttpServletResponse response) {
 		try {
 			users.makeAdmin(request);
+		} catch (UserNotFoundException e) {
+			response.setStatus(HttpStatus.NOT_FOUND.value());
+		}
+	}
+
+	@Secured("ADMIN")
+	@RequestMapping(value = "/admin/deleteUser", method = RequestMethod.POST)
+	@ResponseBody
+	public void deleteUser(@RequestBody UUIDRequest request, HttpServletResponse response) {
+		try {
+			users.deleteUser(request.getId());
 		} catch (UserNotFoundException e) {
 			response.setStatus(HttpStatus.NOT_FOUND.value());
 		}
