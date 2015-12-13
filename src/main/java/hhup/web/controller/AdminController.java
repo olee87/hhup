@@ -83,6 +83,7 @@ public class AdminController {
 
 	@Secured("ADMIN")
 	@RequestMapping(value = "/admin/checkin", method = RequestMethod.POST)
+	@ResponseBody
 	public void checkin(@RequestBody CheckinRequest request, HttpServletResponse response) {
 		try {
 			users.checkIn(request);

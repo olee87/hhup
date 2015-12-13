@@ -79,7 +79,7 @@ public class SpreadsheetService {
 			Sheet sheet = createSheet(titleString, wb);
 			createHeader(titleString, sheet, styles, listActivities);
 
-			int[] maxwidths = new int[] { 8, 9, 5, 10, 5, 5, 12, 12, 30};
+			int[] maxwidths = new int[] { 8, 9, 9, 5, 10, 5, 5, 12, 12, 30};
 
 			for (int i = 0; i < users.size(); i++) {
 				createUserRow(sheet, maxwidths, i, users, styles, listActivities);
@@ -127,41 +127,48 @@ public class SpreadsheetService {
 		username.setCellStyle(styles.get("cellNormal"));
 		maxwidths[0] = Math.max(user.getUsername().length(), maxwidths[0]);
 
-		// real name
-		Cell realName = row.createCell(1);
-		String realNameString = StringUtils.defaultIfBlank(user.getRealName(), "n/a");
-		realName.setCellValue(realNameString);
-		realName.setCellStyle(styles.get("cellNormal"));
-		maxwidths[1] = Math.max(realNameString.length(), maxwidths[1]);
+		// first name
+		Cell firstName = row.createCell(1);
+		String firstNameString = StringUtils.defaultIfBlank(user.getFirstName(), "n/a");
+		firstName.setCellValue(firstNameString);
+		firstName.setCellStyle(styles.get("cellNormal"));
+		maxwidths[1] = Math.max(firstNameString.length(), maxwidths[1]);
+
+		// last name
+		Cell lastName = row.createCell(2);
+		String lastNameString = StringUtils.defaultIfBlank(user.getLastName(), "n/a");
+		lastName.setCellValue(lastNameString);
+		lastName.setCellStyle(styles.get("cellNormal"));
+		maxwidths[2] = Math.max(lastNameString.length(), maxwidths[1]);
 
 		// email
-		Cell email = row.createCell(2);
+		Cell email = row.createCell(3);
 		email.setCellValue(user.getEmail());
 		email.setCellStyle(styles.get("cellNormal"));
-		maxwidths[2] = Math.max(user.getEmail().length(), maxwidths[2]);
+		maxwidths[3] = Math.max(user.getEmail().length(), maxwidths[2]);
 
 		// nationality
-		Cell nationality = row.createCell(3);
+		Cell nationality = row.createCell(4);
 		String displayCountry = user.getNationality() != null ? new Locale("", user.getNationality())
 				.getDisplayCountry(en) : "n/a";
 		nationality.setCellValue(displayCountry);
 		nationality.setCellStyle(styles.get("cellNormal"));
-		maxwidths[3] = Math.max(displayCountry.length(), maxwidths[3]);
+		maxwidths[4] = Math.max(displayCountry.length(), maxwidths[3]);
 
 		// phone
-		Cell phone = row.createCell(4);
+		Cell phone = row.createCell(5);
 		String phoneString = StringUtils.defaultIfBlank(user.getPhone(), "n/a");
 		phone.setCellValue(phoneString);
 		phone.setCellStyle(styles.get("cellNormal"));
-		maxwidths[4] = Math.max(phoneString.length(), maxwidths[4]);
+		maxwidths[5] = Math.max(phoneString.length(), maxwidths[4]);
 
 		// paid
-		Cell paid = row.createCell(5);
+		Cell paid = row.createCell(6);
 		paid.setCellValue(user.isPaid() ? "yes" : "no");
 		paid.setCellStyle(styles.get("cellNormal"));
 
 		// date paid
-		Cell datePaid = row.createCell(6);
+		Cell datePaid = row.createCell(7);
 		if (user.isPaid()) {
 			datePaid.setCellValue(user.getPayDate().toCalendar(en));
 			datePaid.setCellStyle(styles.get("cellNormalDate"));
@@ -171,7 +178,7 @@ public class SpreadsheetService {
 		}
 
 		// date registered
-		Cell dateRegistered = row.createCell(7);
+		Cell dateRegistered = row.createCell(8);
 		dateRegistered.setCellValue(user.getRegistrationDate().toCalendar(en));
 		dateRegistered.setCellStyle(styles.get("cellNormalDate"));
 
@@ -182,7 +189,7 @@ public class SpreadsheetService {
 					.map(activity -> activity.getTitle())
 					.collect(Collectors.joining(", "));
 
-			Cell activitiesCell = row.createCell(8);
+			Cell activitiesCell = row.createCell(9);
 			activitiesCell.setCellValue(activitiesString);
 			activitiesCell.setCellStyle(styles.get("cellNormal"));
 		}
@@ -206,36 +213,40 @@ public class SpreadsheetService {
 		usernameHeader.setCellValue("username");
 		usernameHeader.setCellStyle(styles.get("header"));
 
-		Cell realNameHeader = headerRow.createCell(1);
-		realNameHeader.setCellValue("real name");
-		realNameHeader.setCellStyle(styles.get("header"));
+		Cell firstNameHeader = headerRow.createCell(1);
+		firstNameHeader.setCellValue("first name");
+		firstNameHeader.setCellStyle(styles.get("header"));
 
-		Cell emailHeader = headerRow.createCell(2);
+		Cell lastNameHeader = headerRow.createCell(2);
+		lastNameHeader.setCellValue("last name");
+		lastNameHeader.setCellStyle(styles.get("header"));
+
+		Cell emailHeader = headerRow.createCell(3);
 		emailHeader.setCellValue("email");
 		emailHeader.setCellStyle(styles.get("header"));
 
-		Cell nationalityHeader = headerRow.createCell(3);
+		Cell nationalityHeader = headerRow.createCell(4);
 		nationalityHeader.setCellValue("nationality");
 		nationalityHeader.setCellStyle(styles.get("header"));
 
-		Cell phoneHeader = headerRow.createCell(4);
+		Cell phoneHeader = headerRow.createCell(5);
 		phoneHeader.setCellValue("phone");
 		phoneHeader.setCellStyle(styles.get("header"));
 
-		Cell paidHeader = headerRow.createCell(5);
+		Cell paidHeader = headerRow.createCell(6);
 		paidHeader.setCellValue("paid?");
 		paidHeader.setCellStyle(styles.get("header"));
 
-		Cell datePaidHeader = headerRow.createCell(6);
+		Cell datePaidHeader = headerRow.createCell(7);
 		datePaidHeader.setCellValue("date paid");
 		datePaidHeader.setCellStyle(styles.get("header"));
 
-		Cell dateRegisteredHeader = headerRow.createCell(7);
+		Cell dateRegisteredHeader = headerRow.createCell(8);
 		dateRegisteredHeader.setCellValue("date registered");
 		dateRegisteredHeader.setCellStyle(styles.get("header"));
 
 		if (listActivities) {
-			Cell activitiesHeader = headerRow.createCell(8);
+			Cell activitiesHeader = headerRow.createCell(9);
 			activitiesHeader.setCellValue("saturday activities");
 			activitiesHeader.setCellStyle(styles.get("header"));
 		}

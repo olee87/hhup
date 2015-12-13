@@ -194,7 +194,7 @@ public class UserService implements UserDetailsService {
 		}
 
 		if (edit.getRealName() != null) {
-			builder.withRealName(edit.getRealName());
+			builder.withFirstName(edit.getRealName());
 		}
 
 		InternalUserInfo editedUser = builder.asInternalUserInfo();

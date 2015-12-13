@@ -8,7 +8,8 @@ import org.joda.time.DateTime;
 public class UserBuilder {
 
 	private String username;
-	private String realName;
+	private String firstName;
+	private String lastName;
 	private String password;
 	private String email;
 	private GoogleLocation homeId;
@@ -22,6 +23,7 @@ public class UserBuilder {
 	private Boolean activated;
 	private Boolean checkedIn;
 	private Boolean paid;
+	private Boolean hideLastName;
 	private EnumSet<Authority> authorities;
 	private DateTime registrationDate;
 	private DateTime payDate;
@@ -34,7 +36,7 @@ public class UserBuilder {
 	public static UserBuilder blankUser() {
 		UserBuilder builder = new UserBuilder();
 		builder.username = null;
-		builder.realName = null;
+		builder.firstName = null;
 		builder.password = null;
 		builder.email = null;
 		builder.homeId = null;
@@ -48,6 +50,7 @@ public class UserBuilder {
 		builder.activated = null;
 		builder.checkedIn = null;
 		builder.paid = null;
+		builder.hideLastName = null;
 		builder.registrationDate = null;
 		builder.checkinDate = null;
 		builder.payDate = null;
@@ -60,7 +63,8 @@ public class UserBuilder {
 	public static UserBuilder from(NewUserInfo user) {
 		UserBuilder builder = new UserBuilder();
 		builder.username = user.getUsername();
-		builder.realName = user.getRealName();
+		builder.firstName = user.getFirstName();
+		builder.lastName = user.getLastName();
 		builder.password = user.getPassword();
 		builder.email = user.getEmail();
 		builder.homeId = user.getHomeId();
@@ -75,6 +79,7 @@ public class UserBuilder {
 		builder.activated = false;
 		builder.checkedIn = false;
 		builder.paid = false;
+		builder.hideLastName = user.isHideLastName();
 		builder.registrationDate = DateTime.now();
 		builder.checkinDate = null;
 		builder.payDate = null;
@@ -85,7 +90,8 @@ public class UserBuilder {
 	public static UserBuilder from(InternalUserInfo user) {
 		UserBuilder builder = new UserBuilder();
 		builder.username = user.getUsername();
-		builder.realName = user.getRealName();
+		builder.firstName = user.getFirstName();
+		builder.lastName = user.getLastName();
 		builder.password = user.getPassword();
 		builder.email = user.getEmail();
 		builder.homeId = user.getHomeId();
@@ -99,6 +105,7 @@ public class UserBuilder {
 		builder.activated = user.isActivated();
 		builder.checkedIn = user.isCheckedIn();
 		builder.paid = user.isPaid();
+		builder.hideLastName = user.isHideLastName();
 		builder.authorities = user.getAuthorities();
 		builder.phone = user.getPhone();
 		builder.languages = user.getLanguages();
@@ -113,8 +120,13 @@ public class UserBuilder {
 		return this;
 	}
 
-	public UserBuilder withRealName(String realName) {
-		this.realName = realName;
+	public UserBuilder withFirstName(String firstName) {
+		this.firstName = firstName;
+		return this;
+	}
+
+	public UserBuilder withListName(String lastName) {
+		this.lastName = lastName;
 		return this;
 	}
 
@@ -222,14 +234,14 @@ public class UserBuilder {
 	}
 
 	public InternalUserInfo asInternalUserInfo() {
-		return new InternalUserInfo(username, password, realName, email, homeId, homeString, nationality, csProfile,
-				hcProfile, bwProfile, fbProfile, id, activated, checkedIn, paid, authorities, phone, languages,
-				registrationDate, checkinDate, payDate);
+		return new InternalUserInfo(username, password, firstName, lastName, email, homeId, homeString, nationality, csProfile,
+				hcProfile, bwProfile, fbProfile, id, activated, checkedIn, paid, hideLastName, authorities, phone,
+				languages, registrationDate, checkinDate, payDate);
 	}
 
 	public PublicUserInfo asPublicUserInfo() {
-		return new PublicUserInfo(registrationDate, checkinDate, payDate, username, realName, email, homeId,
+		return new PublicUserInfo(registrationDate, checkinDate, payDate, username, firstName, lastName, email, homeId,
 				homeString, nationality, csProfile, hcProfile, bwProfile, fbProfile, id, activated, checkedIn, paid,
-				authorities, phone, languages);
+				hideLastName, authorities, phone, languages);
 	}
 }

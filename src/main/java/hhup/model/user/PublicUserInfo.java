@@ -3,6 +3,7 @@ package hhup.model.user;
 import java.util.EnumSet;
 import java.util.UUID;
 
+import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -18,7 +19,8 @@ public class PublicUserInfo extends UserInfo {
 	private DateTime checkinDate;
 	private DateTime payDate;
 	private String username;
-	private String realName;
+	private String firstName;
+	private String lastName;
 	private String email;
 	private GoogleLocation homeId;
 	private String homeString;
@@ -31,19 +33,21 @@ public class PublicUserInfo extends UserInfo {
 	private Boolean activated;
 	private Boolean checkedIn;
 	private Boolean paid;
+	private Boolean hideLastName;
 	private EnumSet<Authority> authorities;
 	private String phone;
 	private String[] languages;
 
 	public PublicUserInfo(DateTime registrationDate, DateTime checkinDate, DateTime payDate, String username,
-			String realName, String email, GoogleLocation homeId, String homeString, String nationality,
+			String firstName, String lastName, String email, GoogleLocation homeId, String homeString, String nationality,
 			String csProfile, String hcProfile, String bwProfile, String fbProfile, UUID id, Boolean activated,
-			Boolean checkedIn, Boolean paid, EnumSet<Authority> authorities, String phone, String[] languages) {
+			Boolean checkedIn, Boolean paid, Boolean hideLastName, EnumSet<Authority> authorities, String phone, String[] languages) {
 		this.registrationDate = registrationDate;
 		this.checkinDate = checkinDate;
 		this.payDate = payDate;
 		this.username = username;
-		this.realName = realName;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.email = email;
 		this.homeId = homeId;
 		this.homeString = homeString;
@@ -56,6 +60,7 @@ public class PublicUserInfo extends UserInfo {
 		this.activated = activated;
 		this.checkedIn = checkedIn;
 		this.paid = paid;
+		this.hideLastName = hideLastName;
 		this.authorities = authorities;
 		this.phone = phone;
 		this.languages = languages;
@@ -69,8 +74,12 @@ public class PublicUserInfo extends UserInfo {
 		return username;
 	}
 
-	public String getRealName() {
-		return realName;
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
 	}
 
 	public String getEmail() {
@@ -118,6 +127,10 @@ public class PublicUserInfo extends UserInfo {
 		return paid;
 	}
 
+	public Boolean isHideLastName() {
+		return hideLastName;
+	}
+
 	public EnumSet<Authority> getAuthorities() {
 		return authorities;
 	}
@@ -140,5 +153,14 @@ public class PublicUserInfo extends UserInfo {
 
 	public DateTime getPayDate() {
 		return payDate;
+	}
+
+	public String getRealName() {
+		StringBuilder name = new StringBuilder();
+		name.append(StringUtils.defaultIfEmpty(firstName, "-"));
+		if ((hideLastName != null) && hideLastName) {
+			name.append(" ").append(StringUtils.defaultIfEmpty(lastName, "-"));
+		}
+		return name.toString();
 	}
 }

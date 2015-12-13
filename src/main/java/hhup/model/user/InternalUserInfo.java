@@ -17,7 +17,8 @@ public class InternalUserInfo extends UserInfo {
 	private DateTime checkinDate;
 	private DateTime payDate;
 	private String username;
-	private String realName;
+	private String firstName;
+	private String lastName;
 	private String password;
 	private String email;
 	private GoogleLocation homeId;
@@ -32,20 +33,22 @@ public class InternalUserInfo extends UserInfo {
 	private UUID id;
 	private Boolean activated;
 	private Boolean checkedIn;
+	private Boolean hideLastName;
 	private Boolean paid;
 	private EnumSet<Authority> authorities;
 
 	public InternalUserInfo() { /* default constructor for jackson */}
 
-	public InternalUserInfo(String username, String password, String realName, String email, GoogleLocation homeId,
+	public InternalUserInfo(String username, String password, String firstName, String lastName, String email, GoogleLocation homeId,
 			String homeString, String nationality, String csProfile, String hcProfile, String bwProfile,
-			String fbProfile, UUID id, Boolean activated, Boolean checkedIn, Boolean paid,
+			String fbProfile, UUID id, Boolean activated, Boolean checkedIn, Boolean paid, Boolean hideLastName,
 			EnumSet<Authority> authorities, String phone, String[] languages, DateTime registrationDate,
 			DateTime checkinDate, DateTime payDate) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.realName = realName;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.email = email;
 		this.homeId = homeId;
 		this.homeString = homeString;
@@ -64,6 +67,7 @@ public class InternalUserInfo extends UserInfo {
 		this.registrationDate = registrationDate;
 		this.checkinDate = checkinDate;
 		this.payDate = payDate;
+		this.hideLastName = hideLastName;
 	}
 
 	public String getUsername() {
@@ -123,8 +127,16 @@ public class InternalUserInfo extends UserInfo {
 		return paid;
 	}
 
-	public String getRealName() {
-		return realName;
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public Boolean isHideLastName() {
+		return hideLastName;
 	}
 
 	public EnumSet<Authority> getAuthorities() {
@@ -161,10 +173,7 @@ public class InternalUserInfo extends UserInfo {
 		}
 
 		builder.append("username: ").append(username).append(", email: ").append(email);
-
-		if (realName != null) {
-			builder.append(", real name: ").append(realName);
-		}
+		builder.append(", real name: ").append(firstName).append(" ").append(lastName);
 
 		if (homeId != null) {
 			builder.append(", home id (google): ").append(homeId.getId()).append(", readable home name: ")

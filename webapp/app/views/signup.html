@@ -61,12 +61,27 @@
     <div class="input-group-addon left">
       <span class="glyphicon glyphicon-credit-card"></span>
       <!--[if lte IE 9]>
-        <span class="ie-label">real name</span>
+        <span class="ie-label">first name</span>
       <![endif]-->
     </div>
-    <input type="text" class="form-control" placeholder="real name" ng-model="user.realName" ng-disabled="disable">
+    <input type="text" class="form-control" placeholder="first name" ng-model="user.firstName" ng-disabled="disable">
+    <div class="input-group-addon label-warning" ng-if="!user.firstName">required</div>
+    <div class="input-group-addon label-danger" ng-if="invalid.firstName">{{invalid.firstName}}</div>
+    <div class="input-group-addon label-success glyphicon glyphicon-ok" ng-if="!invalid.firstName && user.firstName.length > 0"></div>
   </div>
-  
+  <div class="input-group spaced-bottom">
+    <div class="input-group-addon left">
+      <span class="glyphicon glyphicon-credit-card"></span>
+      <!--[if lte IE 9]>
+        <span class="ie-label">last name</span>
+      <![endif]-->
+    </div>
+    <input type="text" class="form-control" placeholder="last name" ng-model="user.lastName" ng-disabled="disable">
+    <div class="input-group-addon label-warning" ng-if="!user.lastName">required</div>
+    <div class="input-group-addon label-danger" ng-if="invalid.lastName">{{invalid.lastName}}</div>
+    <div class="input-group-addon label-success glyphicon glyphicon-ok" ng-if="!invalid.lastName && user.lastName.length > 0"></div>
+  </div>
+
   <!-- PHONE -->
   <div class="input-group spaced-bottom">
     <div class="input-group-addon left">

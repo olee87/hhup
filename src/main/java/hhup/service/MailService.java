@@ -45,6 +45,8 @@ public class MailService {
 	private static final String CONFIRM_PATH = "/#/confirm/";
 	private static final String RECOVER_PATH = "/#/recoverPassword/";
 
+	private static final String SUBJECT_START = "[Hamburg CS Invasion 2016] ";
+
 	private Logger log = LoggerFactory.getLogger(MailService.class);
 
 	@Value("${hhup.ownHostName}")
@@ -100,7 +102,7 @@ public class MailService {
 		} else {
 			VelocityContext context = new VelocityContext();
 
-			String name = StringUtils.defaultIfBlank(user.getRealName(), user.getUsername());
+			String name = StringUtils.defaultIfBlank(user.getFirstName(), user.getUsername());
 			String link = hhupAddress + CONFIRM_PATH + token.toString();
 
 			context.put("name", name);
@@ -109,7 +111,7 @@ public class MailService {
 			String text = "Hi " + name + ", thank you for signing up for the Hamburg CouchSurfing Invasion 2015!"
 					+ " To confirm your registration please click or paste this link into your browser: " + link;
 
-			String subject = "[Hamburg Invasion 2015] confirm your registration";
+			String subject = SUBJECT_START + "confirm your registration";
 			String template = "/templates/registerConfirm.vt";
 
 			sendMail(subject, template, text, context, user.getEmail());
@@ -123,7 +125,7 @@ public class MailService {
 			log.info("sending password recovery email to {}", user.getEmail(), token);
 			VelocityContext context = new VelocityContext();
 
-			String name = StringUtils.defaultIfBlank(user.getRealName(), user.getUsername());
+			String name = StringUtils.defaultIfBlank(user.getFirstName(), user.getUsername());
 			String link = hhupAddress + RECOVER_PATH + token.toString();
 
 			context.put("name", name);
@@ -132,7 +134,7 @@ public class MailService {
 			String text = "Hi " + name + ", to recover your password for the Hamburg CouchSurfing Invasion website"
 					+ " please click or paste this link into your browser: " + link;
 
-			String subject = "[Hamburg Invasion 2015] recover password";
+			String subject = SUBJECT_START + "recover password";
 			String template = "/templates/recoverPassword.vt";
 
 			sendMail(subject, template, text, context, user.getEmail());

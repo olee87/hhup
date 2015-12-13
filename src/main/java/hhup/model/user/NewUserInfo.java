@@ -10,8 +10,14 @@ public class NewUserInfo extends UserInfo {
 	private String password;
 	private String email;
 
+	@JsonProperty(required = true)
+	private String firstName;
+
+	@JsonProperty(required = true)
+	private String lastName;
+
 	@JsonProperty(required = false)
-	private String realName;
+	private Boolean hideLastName;
 
 	@JsonProperty(required = false)
 	private String phone;
@@ -52,8 +58,16 @@ public class NewUserInfo extends UserInfo {
 		return email;
 	}
 
-	public String getRealName() {
-		return realName;
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public Boolean isHideLastName() {
+		return hideLastName;
 	}
 
 	public GoogleLocation getHomeId() {

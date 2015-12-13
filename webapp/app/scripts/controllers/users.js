@@ -111,4 +111,12 @@ angular.module('hhupApp').controller('UsersCtrl', function(authenticationService
       }
     }
   };
+
+  $scope.total = function() {
+    return $scope.users ? $scope.users.length : 0;
+  };
+
+  $scope.paid = function() {
+    return $scope.users ? $filter('filter')($scope.users, {paid:true}).length : 0;
+  };
 });

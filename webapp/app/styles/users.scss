@@ -21,3 +21,50 @@
 .admin-buttongroup {
 	width: 143px;
 }
+
+/* .user-table-scrollpane { */
+/* 	max-height: 600px; */
+/* 	overflow: scroll */
+/* } */
+
+/* .user-table-scrollpane thead, .user-table-scrollpane tbody { display: block; } */
+
+/* .user-table-scrollpane tbody { */
+/*     height: 600px;       Just for the demo          */
+/*     overflow-y: auto;    Trigger vertical scroll    */
+/*     overflow-x: hidden;  Hide the horizontal scroll */
+/* } */
+
+.user-table-scrollpane table {
+        width: 100%;
+    }
+
+.user-table-scrollpane thead, .user-table-scrollpane tbody, .user-table-scrollpane tr, .user-table-scrollpane td, .user-table-scrollpane th { display: block; }
+
+.user-table-scrollpane tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.user-table-scrollpane thead th {
+    height: 30px;
+
+    /*text-align: left;*/
+}
+
+.user-table-scrollpane tbody {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.user-table-scrollpane thead {
+    /* fallback */
+}
+
+
+.user-table-scrollpane tbody td, .user-table-scrollpane thead th {
+    width: 19.2%;
+    float: left;
+}

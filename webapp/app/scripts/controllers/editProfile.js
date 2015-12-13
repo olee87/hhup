@@ -10,8 +10,7 @@ angular.module('hhupApp').controller('EditProfileCtrl', function($filter, $scope
     hcProfile: $scope.user.hcProfile,
     bwProfile: $scope.user.bwProfile,
     fbProfile: $scope.user.fbProfile,
-    phone: $scope.user.phone,
-    realName: $scope.user.realName
+    phone: $scope.user.phone
   };
 
   $scope.nationalities = {

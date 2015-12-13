@@ -7,7 +7,9 @@ angular.module('hhupApp').controller('SignupCtrl',
       username: '',
       password: '',
       email: '',
-      realName: '',
+      firstName: '',
+      lastName: '',
+      hideLastName: false,
       nationality: '',
       home: '',
       csProfile: '',
@@ -35,6 +37,8 @@ angular.module('hhupApp').controller('SignupCtrl',
         $scope.invalid.password !== false ||
         $scope.invalid.passwordConfirm !== false ||
         $scope.user.email === '' ||
+        $scope.user.firstName === '' ||
+        $scope.user.lastName === '' ||
         $scope.invalid.email !== false) {
 
         $scope.submitDisable = true;

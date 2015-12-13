@@ -79,7 +79,8 @@ public class PDFService {
 		// Create a document and add a page to it
 		try (PDDocument document = new PDDocument()) {
 			if (sorting.equals(SORTING_BY_REAL_NAME)) {
-				Collections.sort(users, (x, y) -> x.getRealName().compareTo(y.getRealName()));
+				Collections.sort(users, (x, y) -> x.getLastName().compareTo(y.getLastName()));
+				Collections.sort(users, (x, y) -> x.getFirstName().compareTo(y.getFirstName()));
 			} else {
 				Collections.sort(users, (x, y) -> x.getUsername().compareTo(y.getUsername()));
 			}
@@ -226,14 +227,14 @@ public class PDFService {
 
 						// real name
 						stream.moveTextPositionByAmount(150, 0);
-						stream.drawString(abbreviate(StringUtils.defaultIfBlank(user.getRealName(), "-"), 21));
+						stream.drawString(abbreviate(StringUtils.defaultIfBlank(user.getFirstName() + " " + user.getLastName(), "-"), 21));
 
 					}
 						break;
 					default: {
 						// real name
 						stream.moveTextPositionByAmount(50, y);
-						stream.drawString(abbreviate(StringUtils.defaultIfBlank(user.getRealName(), "-"), 21));
+						stream.drawString(abbreviate(StringUtils.defaultIfBlank(user.getFirstName() + " " + user.getLastName(), "-"), 21));
 
 						// user name
 						stream.moveTextPositionByAmount(150, 0);
