@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/rest")
 public class AdminController {
 
 	@Autowired
@@ -141,7 +142,7 @@ public class AdminController {
 	}
 
 	@Secured("ADMIN")
-	@RequestMapping(value = "/rest/admin/massMail", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/massMail", method = RequestMethod.POST)
 	@ResponseBody
 	public void setEmergencyMessage(@RequestBody MassMailRequest request) throws UserNotFoundException,
 			ActivityNotFoundException, MessagingException {
@@ -149,14 +150,14 @@ public class AdminController {
 	}
 
 	@Secured("ADMIN")
-	@RequestMapping(value = "/rest/admin/loginMessage", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/loginMessage", method = RequestMethod.POST)
 	@ResponseBody
 	public void setLoginMessage(@RequestBody LoginMessageRequest request) throws UserNotFoundException {
 		massMessages.setLoginMessage(request.getMessage(), request.isActive());
 	}
 
 	@Secured("ADMIN")
-	@RequestMapping(value = "/rest/admin/testMail", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/testMail", method = RequestMethod.POST)
 	@ResponseBody
 	public void testMail(@RequestBody SendTestMailRequest request, HttpServletResponse response) throws IOException,
 			UserNotFoundException {

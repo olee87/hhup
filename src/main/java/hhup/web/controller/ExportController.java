@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping("/rest")
 public class ExportController {
 
 	@Autowired
@@ -29,7 +30,7 @@ public class ExportController {
 	@Autowired
 	private ActivitiesService activities;
 
-	@RequestMapping(value = "/rest/pdf/users", method = RequestMethod.GET)
+	@RequestMapping(value = "/pdf/users", method = RequestMethod.GET)
 	public void downloadPdfOfAllUsers(HttpServletResponse response) {
 		try {
 			response.setContentType("application/pdf");
@@ -40,7 +41,7 @@ public class ExportController {
 		}
 	}
 
-	@RequestMapping(value = "/rest/pdf/activity/{activityId}", method = RequestMethod.GET, produces = "application/x-unknown")
+	@RequestMapping(value = "/pdf/activity/{activityId}", method = RequestMethod.GET, produces = "application/x-unknown")
 	public void downloadPdfForActivity(HttpServletResponse response, @PathVariable UUID activityId) {
 		try {
 			response.setContentType("application/pdf");
@@ -52,7 +53,7 @@ public class ExportController {
 		}
 	}
 
-	@RequestMapping(value = "/rest/spreadsheet/users", method = RequestMethod.GET)
+	@RequestMapping(value = "/spreadsheet/users", method = RequestMethod.GET)
 	public void downloadSpreadsheetOfAllUsers(HttpServletResponse response) {
 		try {
 			response.setContentType("application/vnd.ms-excel");
@@ -63,7 +64,7 @@ public class ExportController {
 		}
 	}
 
-	@RequestMapping(value = "/rest/spreadsheet/activity/{activityId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/spreadsheet/activity/{activityId}", method = RequestMethod.GET)
 	public void downloadSpreadsheetForActivity(HttpServletResponse response, @PathVariable UUID activityId) {
 		try {
 			response.setContentType("application/vnd.ms-excel");

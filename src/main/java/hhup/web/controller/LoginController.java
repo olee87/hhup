@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/rest")
 public class LoginController {
 
 	private final Logger log = LoggerFactory.getLogger(LoginController.class);
@@ -34,7 +35,7 @@ public class LoginController {
 	/**
 	 * GET /rest/authenticate -> check if the user is authenticated, and return its login.
 	 */
-	@RequestMapping(value = "/rest/authenticate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/authenticate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String isAuthenticated(HttpServletRequest request) {
 		log.debug("REST request to check if the current user is authenticated");
 		return request.getRemoteUser();
@@ -43,7 +44,7 @@ public class LoginController {
 	/**
 	 * GET /rest/account/sessions -> get the current open sessions.
 	 */
-	@RequestMapping(value = "/rest/account/sessions", method = RequestMethod.GET)
+	@RequestMapping(value = "/account/sessions", method = RequestMethod.GET)
 	@ResponseBody
 	public List<RememberMeToken> getCurrentSessions(HttpServletResponse response) {
 		try {
@@ -67,7 +68,7 @@ public class LoginController {
 	 *
 	 * @throws UnsupportedEncodingException
 	 */
-	@RequestMapping(value = "/rest/account/sessions/{sessionId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/account/sessions/{sessionId}", method = RequestMethod.DELETE)
 	public void invalidateSession(@PathVariable String series, HttpServletResponse response)
 			throws UnsupportedEncodingException {
 		String decodedSeries = URLDecoder.decode(series, "UTF-8");

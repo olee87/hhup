@@ -3,8 +3,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>invasion.hamburg</groupId>
   <artifactId>event-cms</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.24</version>
   <name>HHUP Event Manager</name>
+
+  <packaging>war</packaging>
 
   <properties>
     <timestamp>${maven.build.timestamp}</timestamp>
@@ -15,7 +17,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.2.7.RELEASE</version>
+    <version>1.3.2.RELEASE</version>
   </parent>
 
   <dependencies>
@@ -24,6 +26,12 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>tomcat-embed-el</artifactId>
+          <groupId>org.apache.tomcat.embed</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -40,6 +48,17 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <scope>provided</scope>
+      <exclusions>
+      	<exclusion>
+      		<artifactId>tomcat-embed-el</artifactId>
+      		<groupId>org.apache.tomcat.embed</groupId>
+      	</exclusion>
+      </exclusions>
     </dependency>
 
     <!-- PDF creation -->
@@ -162,6 +181,13 @@
        <plugin>
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-maven-plugin</artifactId>
+         <executions>
+           <execution>
+             <goals>
+               <goal>repackage</goal>
+             </goals>
+           </execution>
+         </executions>
        </plugin>
 
       <plugin>

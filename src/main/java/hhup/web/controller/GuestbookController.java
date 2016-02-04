@@ -20,18 +20,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/rest")
 public class GuestbookController {
 
 	@Autowired
 	private GuestbookService guestbook;
 
-	@RequestMapping(value = "/rest/guestbook/all", method = RequestMethod.GET)
+	@RequestMapping(value = "/guestbook/all", method = RequestMethod.GET)
 	@ResponseBody
 	public List<GuestbookEntry> allPosts() {
 		return guestbook.getAll();
 	}
 
-	@RequestMapping(value = "/rest/guestbook/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/guestbook/create", method = RequestMethod.POST)
 	@ResponseBody
 	public void createPost(@RequestBody CreateGuestbookEntryRequest request, HttpServletResponse response) {
 		try {
@@ -41,7 +42,7 @@ public class GuestbookController {
 		}
 	}
 
-	@RequestMapping(value = "/rest/guestbook/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/guestbook/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public void deletePost(@PathVariable UUID id, HttpServletResponse response) throws UserNotFoundException {
 		if (!guestbook.deleteEntry(id)) {

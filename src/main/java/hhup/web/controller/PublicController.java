@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.common.collect.ImmutableMap;
 
 @Controller
+@RequestMapping("/rest")
 public class PublicController {
 
 	@Value("${hhup.event.begin}")
@@ -29,7 +30,7 @@ public class PublicController {
 	@Autowired
 	private StatisticsService statistics;
 
-	@RequestMapping(value = "/rest/public/stats", method = RequestMethod.GET)
+	@RequestMapping(value = "/public/stats", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, String> getStats() {
 		return ImmutableMap.of(
@@ -40,7 +41,7 @@ public class PublicController {
 		);
 	}
 
-	@RequestMapping(value = "/rest/statistics", method = RequestMethod.GET)
+	@RequestMapping(value = "/statistics", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> getStatistics() {
 		return statistics.getAllStatistics();

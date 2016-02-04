@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/rest")
 public class TestController {
 
 	@Autowired
@@ -24,7 +25,7 @@ public class TestController {
 	@Autowired
 	private MailService mail;
 
-	@RequestMapping(value = "/rest/test/confirmMail", method = RequestMethod.GET)
+	@RequestMapping(value = "/confirmMail", method = RequestMethod.GET)
 	@ResponseBody
 	public void testConfirmationMail() throws MessagingException, UserNotFoundException {
 

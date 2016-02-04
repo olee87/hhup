@@ -52,9 +52,6 @@ public class MailService {
 	@Value("${hhup.ownHostName}")
 	private String ownHostName;
 
-	@Value("${hhup.httpPort}")
-	private int httpPort;
-
 	@Autowired
 	private MailConfig config;
 
@@ -72,7 +69,7 @@ public class MailService {
 
 	@PostConstruct
 	public void init() {
-		hhupAddress = ownHostName + (httpPort == 80 ? "" : ":" + httpPort);
+		hhupAddress = ownHostName;
 		if (!hhupAddress.startsWith("http")) {
 			hhupAddress = "http://" + hhupAddress;
 		}

@@ -28,6 +28,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 @Controller
+@RequestMapping("/rest")
 public class PaypalController {
 	private Logger log = LoggerFactory.getLogger(PaypalController.class);
 
@@ -52,7 +53,7 @@ public class PaypalController {
 		return config;
 	}
 
-	@RequestMapping(value="/rest/paypal", method=RequestMethod.POST )
+	@RequestMapping(value="/paypal", method=RequestMethod.POST )
 	public void processIPN(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		log.trace("paypal: payment info received");
 

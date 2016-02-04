@@ -22,18 +22,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/rest")
 public class CouchMarketController {
 
 	@Autowired
 	private CouchMarketService posts;
 
-	@RequestMapping(value = "/rest/couchmarket", method = RequestMethod.GET)
+	@RequestMapping(value = "/couchmarket", method = RequestMethod.GET)
 	@ResponseBody
 	public List<CouchMarketPost> getPosts() {
 		return posts.getAll();
 	}
 
-	@RequestMapping(value = "/rest/couchmarket/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/couchmarket/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public CouchMarketPost getPost(@PathVariable UUID id, HttpServletResponse response) {
 		try {

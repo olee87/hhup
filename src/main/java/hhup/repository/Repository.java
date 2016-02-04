@@ -160,7 +160,6 @@ public class Repository<T> implements Set<T> {
 	}
 
 	public void reload() {
-		log.warn("RE-READING JSON");
 		items = ImmutableSet.<T> copyOf(load());
 	}
 
@@ -217,7 +216,9 @@ public class Repository<T> implements Set<T> {
 
 	private Collection<T> load() {
 		try {
-			return Sets.newHashSet(mapper.readValue(getFile(), entityArrayClass));
+			File file = getFile();
+			log.info("{}: reading '{}' ", this.getClass().getName(), file.getAbsolutePath());
+			return Sets.newHashSet(mapper.readValue(file, entityArrayClass));
 		} catch (Exception e) {
 			log.warn(e.toString());
 			return Collections.emptySet();

@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
+@RequestMapping("/rest")
 public class ActivitiesController {
 	private final Logger log = LoggerFactory.getLogger(ActivitiesController.class);
 
@@ -44,14 +45,14 @@ public class ActivitiesController {
 	@Autowired
 	private ActivitiesService activities;
 
-	@RequestMapping(value = "/rest/activities", method = RequestMethod.GET)
+	@RequestMapping(value = "/activities", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Activity> getEvents() {
 		return activities.getAllActivities();
 	}
 
 	@Secured("ADMIN")
-	@RequestMapping(value="/rest/uploadImage", method=RequestMethod.POST)
+	@RequestMapping(value="/uploadImage", method=RequestMethod.POST)
 	public void handleFileUpload(@RequestBody MultipartFile file, HttpServletResponse response) throws IOException{
 		log.info("file is being uploaded");
 		UUID imageId = UUID.randomUUID();
@@ -89,7 +90,7 @@ public class ActivitiesController {
 		}
 	}
 
-	@RequestMapping(value="/rest/images/{imageFile}.{ext}", method=RequestMethod.GET)
+	@RequestMapping(value="/images/{imageFile}.{ext}", method=RequestMethod.GET)
 	public void getImage(@PathVariable String imageFile, @PathVariable String ext, HttpServletResponse response) throws IOException{
 
 		File image = new File(repo + "uploadedImages/" + imageFile + "." + ext);
@@ -102,7 +103,7 @@ public class ActivitiesController {
 		response.setStatus(HttpServletResponse.SC_OK);
 	}
 
-	@RequestMapping(value = "/rest/activities/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/activities/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public Activity getActivity(@PathVariable UUID id, HttpServletResponse response) {
 		try {
@@ -114,7 +115,7 @@ public class ActivitiesController {
 	}
 
 	@Secured("USER")
-	@RequestMapping(value = "/rest/activities/join", method = RequestMethod.POST)
+	@RequestMapping(value = "/activities/join", method = RequestMethod.POST)
 	@ResponseBody
 	public void joinActivity(@RequestBody UUIDRequest request, HttpServletResponse response) {
 		try {
@@ -127,7 +128,7 @@ public class ActivitiesController {
 	}
 
 	@Secured("USER")
-	@RequestMapping(value = "/rest/activities/leave", method = RequestMethod.POST)
+	@RequestMapping(value = "/activities/leave", method = RequestMethod.POST)
 	@ResponseBody
 	public void leaveActivity(@RequestBody UUIDRequest request, HttpServletResponse response) {
 		try {
@@ -140,14 +141,14 @@ public class ActivitiesController {
 	}
 
 	@Secured("USER")
-	@RequestMapping(value = "/rest/activities/forUser/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/activities/forUser/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public Set<Activity> getEventsForUser(@PathVariable UUID id) {
 		return activities.getActivitiesForUser(id);
 	}
 
 	@Secured("USER")
-	@RequestMapping(value = "/rest/activities/conflicts/{activityId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/activities/conflicts/{activityId}", method = RequestMethod.GET)
 	@ResponseBody
 	public Set<Activity> getConflicts(@PathVariable UUID activityId) throws ActivityNotFoundException,
 			UserNotFoundException {

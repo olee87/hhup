@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/rest")
 public class UserController {
 
 	@Autowired
@@ -42,7 +43,7 @@ public class UserController {
 	@Autowired
 	private MassMessageService massMessage;
 
-	@RequestMapping(value = "/rest/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	public void registerAccount(@RequestBody NewUserInfo user, HttpServletResponse response) {
 		if (users.isUsernameTaken(user.getUsername())) {
@@ -53,7 +54,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/rest/activateUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/activateUser", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<String> activateAccount(@RequestParam UUID code) {
 		InternalUserInfo user;
@@ -67,7 +68,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/rest/user", method = RequestMethod.GET)
+	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	@ResponseBody
 	public PublicUserInfo getAccount(HttpServletResponse response) {
 		try {
@@ -81,7 +82,7 @@ public class UserController {
 	/**
 	 * POST /rest/account -> update the current user information.
 	 */
-	@RequestMapping(value = "/rest/editUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/editUser", method = RequestMethod.POST)
 	@ResponseBody
 	public void saveAccount(@RequestBody EditUserRequest request, HttpServletResponse response) {
 		try {
@@ -96,7 +97,7 @@ public class UserController {
 	/**
 	 * POST /rest/change_password -> changes the current user's password
 	 */
-	@RequestMapping(value = "/rest/changePassword", method = RequestMethod.POST)
+	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
 	@ResponseBody
 	public void changePassword(@RequestBody String password, HttpServletResponse response) {
 		if (StringUtils.isBlank(password)) {
@@ -110,13 +111,13 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/rest/users", method = RequestMethod.GET)
+	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	@ResponseBody
 	public Set<PublicUserInfo> getUsers() {
 		return UserUtils.toPublicUserInfos(users.getAll());
 	}
 
-	@RequestMapping(value = "/rest/users/byUsername/{userName}", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/byUsername/{userName}", method = RequestMethod.GET)
 	@ResponseBody
 	public PublicUserInfo getProfileByUsername(@PathVariable String userName, HttpServletResponse response) {
 		try {
@@ -127,7 +128,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/rest/users/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public PublicUserInfo getProfileById(@PathVariable UUID id, HttpServletResponse response) {
 		try {
@@ -138,7 +139,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/rest/recoverPassword", method = RequestMethod.POST)
+	@RequestMapping(value = "/recoverPassword", method = RequestMethod.POST)
 	@ResponseBody
 	public void requestPasswordRecovery(@RequestBody EmailOrUsernameRequest request, HttpServletResponse response)
 			throws MessagingException {
@@ -149,7 +150,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/rest/confirmRecoverPassword", method = RequestMethod.POST)
+	@RequestMapping(value = "/confirmRecoverPassword", method = RequestMethod.POST)
 	@ResponseBody
 	public void confirmPasswordRecovery(@RequestBody RecoverPasswordRequest request, HttpServletResponse response) {
 		try {
@@ -159,13 +160,13 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/rest/usernameTaken/{username}", method = RequestMethod.GET)
+	@RequestMapping(value = "/usernameTaken/{username}", method = RequestMethod.GET)
 	@ResponseBody
 	public Boolean[] usernameTaken(@PathVariable String username) {
 		return new Boolean[] { users.isUsernameTaken(username) };
 	}
 
-	@RequestMapping(value = "/rest/loginMessage", method = RequestMethod.GET)
+	@RequestMapping(value = "/loginMessage", method = RequestMethod.GET)
 	@ResponseBody
 	public LoginMessage getLoginMessage() {
 		return new LoginMessage(massMessage.isLoginMessageActive(), massMessage.getLoginMessage());

@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/rest")
 public class HistoryController {
 
 	@Autowired
 	private HistoryService history;
 
-	@RequestMapping(value = "/rest/history", method = RequestMethod.GET)
+	@RequestMapping(value = "/history", method = RequestMethod.GET)
 	@ResponseBody
 	public List<HistoryItem> getHistoryFor(
 			@RequestParam(value = "userId", required = false) UUID actorOrSubjectId,
