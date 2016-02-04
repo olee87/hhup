@@ -80,7 +80,7 @@ module.exports = function (grunt) {
           context: '/rest',
           host: 'localhost',
 //          rewrite: { '^/rest': '/event-cms/rest' },
-          port: 8090,
+          port: 8080,
           https: false,
           changeOrigin: true
         }

@@ -18,11 +18,16 @@ angular.module('hhupApp', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
+        templateUrl: 'views/welcome.html',
+        controller: 'WelcomeCtrl'
+      })
+      .when('/welcome', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
       .when('/about', {
-        templateUrl: 'views/about.html',
+//        templateUrl: 'views/about.html',
+        templateUrl: 'views/aboutMin.html',
         controller: 'AboutCtrl'
       })
       .when('/signup', {
